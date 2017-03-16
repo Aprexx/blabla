@@ -36,10 +36,10 @@ class TLVTTLTests(unittest.TestCase):
         self.assertEqual(tlv.dump(), result)
 
     def test_load(self):
-        ttl_tlv_bytes = '\x06\x03\xF4\x24\x00'
+        ttl_tlv_bytes = '\x06\x02\xF4\x24'
         ttl_tlv = ttl.TLVTTL()
         ttl_tlv.load(ttl_tlv_bytes)
-        self.assertEqual(ttl_tlv.ttl(), 16000000)
+        self.assertEqual(ttl_tlv.ttl(), 62500)
 
 
 class TLVPortIdTests(unittest.TestCase):
