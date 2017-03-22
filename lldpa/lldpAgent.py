@@ -38,7 +38,7 @@ class LLDPAgent:
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
             #print("accept")
-            client, address = self.recv_socket.accept()
+            #client, address = self.recv_socket.accept()
             #print(address)
 
     def parse_lldp_frame(self, data):
