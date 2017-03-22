@@ -40,6 +40,7 @@ class LLDPAgent:
             #print("accept")
             #client, address = self.recv_socket.accept()
             #print(address)
+        self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
         """Parser of LLDP frames
