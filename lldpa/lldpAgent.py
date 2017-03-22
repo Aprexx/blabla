@@ -35,8 +35,8 @@ class LLDPAgent:
         self.recv_socket.listen(5)
         #print("loop")
 
-        while not self.terminate:
-            pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
+        #while not self.terminate:
+            #pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
             #print("accept")
             #client, address = self.recv_socket.accept()
             #print(address)
