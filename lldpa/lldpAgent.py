@@ -3,6 +3,7 @@ from __future__ import print_function
 import binascii
 import platform
 import time
+import socket
 
 class LLDPAgent:
     def __init__(self, interface_name, port=0, send_interval_sec=10, src_mac=None):
@@ -29,8 +30,18 @@ class LLDPAgent:
 
         pass  # TODO: Implement raw socket binding.
 
+        serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serversocket.bind((socket.gethostname(), 80))
+        serversocket.listen(5)
+
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
+            # accept connections from outside
+            (clientsocket, address) = serversocket.accept()
+            # now do something with the clientsocket
+            # in this case, we'll pretend this is a threaded server
+            print address
+
 
     def parse_lldp_frame(self, data):
         """Parser of LLDP frames
