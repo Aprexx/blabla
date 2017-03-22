@@ -31,7 +31,7 @@ class LLDPAgent:
         pass  # TODO: Implement raw socket binding.
 
         serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        serversocket.bind((socket.gethostname(), 80))
+        serversocket.bind((socket.gethostname(), self.port))
         serversocket.listen(5)
 
         while not self.terminate:
