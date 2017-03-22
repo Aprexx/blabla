@@ -29,10 +29,11 @@ class LLDPAgent:
         """
 
         pass  # TODO: Implement raw socket binding.
-
         serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         serversocket.bind((socket.gethostname(), self.port))
+        print("listen")
         serversocket.listen(5)
+        print("loop")
 
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
