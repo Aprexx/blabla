@@ -30,7 +30,7 @@ class LLDPAgent:
 
         pass  # TODO: Implement raw socket binding.
         self.recv_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.recv_socket.bind((socket.gethostname(), self.port))
+        self.recv_socket.bind((self.interface_name, self.port))
         #print("listen")
         self.recv_socket.listen(5)
         #print("loop")
