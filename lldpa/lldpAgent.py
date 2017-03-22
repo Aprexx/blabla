@@ -36,12 +36,8 @@ class LLDPAgent:
 
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
-            # accept connections from outside
-            (clientsocket, address) = serversocket.accept()
-            # now do something with the clientsocket
-            # in this case, we'll pretend this is a threaded server
-            print address
-
+            client, address = serversocket.accept()
+            print(address)
 
     def parse_lldp_frame(self, data):
         """Parser of LLDP frames
