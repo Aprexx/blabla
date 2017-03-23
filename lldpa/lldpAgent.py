@@ -6,6 +6,7 @@ import time
 import socket
 import thread
 
+
 class LLDPAgent:
     def __init__(self, interface_name, port=0, send_interval_sec=10, src_mac=None):
         # Check the OS the application is running on.
@@ -60,18 +61,19 @@ class LLDPAgent:
         src = str(binascii.hexlify(data[6:12]))
         type = str(binascii.hexlify(data[12:14]))
 
-        print(len(data))
-        print(":::")
-        print(str(binascii.hexlify(data[0:6])))
-        print(":::")
-        print(str(binascii.hexlify(data[6:12])))
-        print(":::")
-        print(str(binascii.hexlify(data[12:14])))
-        print(":::")
-        print(str(binascii.hexlify(data[14:len(data)-1])))
+        #print(len(data))
+        #print(":::")
+        #print(str(binascii.hexlify(data[0:6])))
+        #print(":::")
+        #print(str(binascii.hexlify(data[6:12])))
+        #print(":::")
+        #print(str(binascii.hexlify(data[12:14])))
+        #print(":::")
+        #print(str(binascii.hexlify(data[14:len(data)-1])))
 
 
         if type=='88cc':
+            lldpM = LLDPMessage()
             output += 'LLDPMessage(src_mac='
             output += src[0:2]+":"+src[2:4]+":"+src[4:6]
             tlv = data[14:16]
