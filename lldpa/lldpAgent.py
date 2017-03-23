@@ -61,13 +61,13 @@ class LLDPAgent:
         #type = data[20:21]
         print(len(data))
         print(":::")
-        print(str(binascii.hexlify(data[0:7])))
+        print(str(binascii.hexlify(data[0:5])))
         print(":::")
-        print(str(binascii.hexlify(data[8:13])))
+        print(str(binascii.hexlify(data[6:11])))
         print(":::")
-        print(str(binascii.hexlify(data[14:19])))
+        print(str(binascii.hexlify(data[12:13])))
         print(":::")
-        print(str(binascii.hexlify(data[20:21])))
+        print(str(binascii.hexlify(data[14:len(data)-1])))
 
 
 
