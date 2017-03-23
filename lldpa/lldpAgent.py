@@ -60,9 +60,13 @@ class LLDPAgent:
         #src = data[14:19]
         #type = data[20:21]
         print(data)
+        print(":::")
         print(data[0:7])
+        print(":::")
         print(data[8:13])
+        print(":::")
         print(data[14:19])
+        print(":::")
         print(data[20:21])
 
 
