@@ -4,6 +4,7 @@ import binascii
 import platform
 import time
 import socket
+import thread
 
 class LLDPAgent:
     def __init__(self, interface_name, port=0, send_interval_sec=10, src_mac=None):
@@ -35,9 +36,9 @@ class LLDPAgent:
 
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
-            packet = self.recv_socket.recv(2048)
+            packet = self.recv_socket.recv(65565)
             #print(packet)
-            self.terminate = 1
+            thread.start_new(self.parse_lldp_frame(packet))
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
@@ -53,6 +54,16 @@ class LLDPAgent:
         """
 
         # TODO: Implement.
+        preamble = data[0:63]
+        dst = hex(data[64:111])
+        src = hex(data[112:159])
+        type = data[160:175]
+
+        print(dst)
+        print(src)
+
+
+
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
