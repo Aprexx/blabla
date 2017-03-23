@@ -55,8 +55,8 @@ class LLDPAgent:
 
         # TODO: Implement.
         preamble = data[0:63]
-        dst = hex(data[64:111])
-        src = hex(data[112:159])
+        dst = data[64:111]
+        src = data[112:159]
         type = data[160:175]
 
         print(dst)
