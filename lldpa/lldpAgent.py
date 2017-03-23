@@ -55,10 +55,10 @@ class LLDPAgent:
 
         # TODO: Implement.
 
-        #preamble = data[0:7]
-        #dst = data[8:13]
-        #src = data[14:19]
-        #type = data[20:21]
+        output = ''
+        dst = data[0:6]
+        src = data[6:12]
+        type = data[12:14]
         print(len(data))
         print(":::")
         print(str(binascii.hexlify(data[0:6])))
@@ -68,6 +68,14 @@ class LLDPAgent:
         print(str(binascii.hexlify(data[12:14])))
         print(":::")
         print(str(binascii.hexlify(data[14:len(data)-1])))
+
+
+        if (type=='88cc')
+            outout += 'LLDPMessage(src_mac='
+            output += src[0:1]
+
+
+        print output
 
 
 
