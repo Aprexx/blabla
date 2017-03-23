@@ -29,7 +29,7 @@ class LLDPAgent:
         """
 
         pass  # TODO: Implement raw socket binding.
-        self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW)
+        self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
         self.recv_socket.bind((self.interface_name, self.port))
 
 
