@@ -54,6 +54,7 @@ class LLDPAgent:
         """
 
         # TODO: Implement.
+        print(data)
         preamble = data[0:63]
         dst = data[64:111]
         src = data[112:159]
