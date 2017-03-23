@@ -61,7 +61,7 @@ class LLDPAgent:
         #type = data[20:21]
         print(len(data))
         print(":::")
-        print(data[0:7])
+        print(str(binascii.hexlify(data[0:7])))
         print(":::")
         print(data[8:13])
         print(":::")
