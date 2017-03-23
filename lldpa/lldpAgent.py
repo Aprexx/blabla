@@ -63,11 +63,11 @@ class LLDPAgent:
         print(":::")
         print(str(binascii.hexlify(data[0:7])))
         print(":::")
-        print(data[8:13])
+        print(str(binascii.hexlify(data[8:13])))
         print(":::")
-        print(data[14:19])
+        print(str(binascii.hexlify(data[14:19])))
         print(":::")
-        print(data[20:21])
+        print(str(binascii.hexlify(data[20:21])))
 
 
 
