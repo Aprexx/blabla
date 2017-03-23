@@ -35,7 +35,7 @@ class LLDPAgent:
 
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
-            packet = self.recv_socket.recvfrom(65565)
+            packet = self.recv_socket.recv(65565)
             print(packet)
             self.terminate = 1
         self.recv_socket.close()
