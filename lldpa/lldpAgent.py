@@ -30,7 +30,7 @@ class LLDPAgent:
 
         pass  # TODO: Implement raw socket binding.
         self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.IPPROTO_RAW)
-        self.recv_socket.bind('127.0.0.1', self.port)
+        self.recv_socket.bind('127.0.0.1:'+self.port)
 
 
         while not self.terminate:
