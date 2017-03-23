@@ -59,7 +59,7 @@ class LLDPAgent:
         #dst = data[8:13]
         #src = data[14:19]
         #type = data[20:21]
-        print(data)
+        print(len(data))
         print(":::")
         print(data[0:7])
         print(":::")
