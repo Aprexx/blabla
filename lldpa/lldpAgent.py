@@ -75,7 +75,7 @@ class LLDPAgent:
             output += 'LLDPMessage(src_mac='
             output += src[0:2]+":"+src[2:4]+":"+src[4:6]
             tlv = data[14:16]
-            tlv_length = 0b0000000111111111 & tlv
+            tlv_length = int(0000000111111111,2) & tlv
             print("tlv_length")
             print(tlv_length)
 
