@@ -54,16 +54,17 @@ class LLDPAgent:
         """
 
         # TODO: Implement.
-        print("data:")
+
+        #preamble = data[0:7]
+        #dst = data[8:13]
+        #src = data[14:19]
+        #type = data[20:21]
         print(data)
-        preamble = data[0:63]
-        dst = data[8:13]
-        src = data[14:19]
-        type = data[160:175]
-        print("dst:")
-        print(dst)
-        print("src")
-        print(src)
+        print(data[0:7])
+        print(data[8:13])
+        print(data[14:19])
+        print(data[20:21])
+
 
 
 
