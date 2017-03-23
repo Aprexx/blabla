@@ -70,12 +70,12 @@ class LLDPAgent:
         print(str(binascii.hexlify(data[14:len(data)-1])))
 
 
-        if (type=='88cc')
-            outout += 'LLDPMessage(src_mac='
+        if (type=='88cc') :
+            output += 'LLDPMessage(src_mac='
             output += src[0:1]
 
 
-        print output
+        print(output)
 
 
 
