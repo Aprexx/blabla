@@ -30,15 +30,11 @@ class LLDPAgent:
 
         pass  # TODO: Implement raw socket binding.
         self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW)
-        #self.recv_socket.bind((socket.gethostname(), self.port))
-        #print("listen")
-        #self.recv_socket.listen(5)
-        #print("loop")
+        self.bind(self.interface_name, self.port)
+
 
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
-            #print("accept")
-            #client, address = self.recv_socket.accept()
             packet = self.recv_socket.recvfrom(65565)
             print(packet)
         self.recv_socket.close()
