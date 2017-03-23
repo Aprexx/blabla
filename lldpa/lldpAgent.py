@@ -59,6 +59,7 @@ class LLDPAgent:
         dst = str(binascii.hexlify(data[0:6]))
         src = str(binascii.hexlify(data[6:12]))
         type = str(binascii.hexlify(data[12:14]))
+
         print(len(data))
         print(":::")
         print(str(binascii.hexlify(data[0:6])))
@@ -72,7 +73,11 @@ class LLDPAgent:
 
         if type=='88cc':
             output += 'LLDPMessage(src_mac='
-            output += src[0:1]
+            output += src[0:2]+":"+src[2:4]+":"+src[4:6]
+            tlv = data[14:16]
+            tlv_length = 0b0000000111111111 & tlv
+            print("tlv_length")
+            print(tlv_length)
 
 
         print(output)
