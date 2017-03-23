@@ -77,7 +77,7 @@ class LLDPAgent:
             tlv = data[14:16]
             tlv_length = int(0000000111111111,2) & tlv
             print("tlv_length")
-            print(tlv_length)
+            print(tlv_length<<7)
 
 
         print(output)
