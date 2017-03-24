@@ -31,6 +31,8 @@ class LLDPMessage(object):
         :return: None
         """
         print("test")
+        print(bytes_in)
+        print(bytes_in[0])
         print(bytes_in[0] & int('11111110',2))
 
 
