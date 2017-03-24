@@ -1,5 +1,6 @@
+from lldpa.tlvs import base
 class LLDPMessage(object):
-
+    tlv_list = list(base)
     def __init__(self, src_mac=""):
         pass  # TODO: Implement.
 
@@ -14,7 +15,7 @@ class LLDPMessage(object):
 
     def append(self, tlv):
         """Appends a tlv to the list of tlvs"""
-        pass  # TODO: Implement.
+        list.__add__(tlv)
 
     def load(self, bytes_in):
         """Parses a byte stream. The first three TLVs MUST be (in this order):
@@ -29,6 +30,9 @@ class LLDPMessage(object):
         :param bytes_in: The bytestream to parse
         :return: None
         """
+        print("test")
+        print(bytes_in[0] & int('11111110',2))
+
 
         return bytearray()  # TODO: Implement.
 

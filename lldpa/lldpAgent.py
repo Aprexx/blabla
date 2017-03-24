@@ -5,6 +5,7 @@ import platform
 import time
 import socket
 import thread
+from lldpa.lldpMessage import LLDPMessage
 
 
 class LLDPAgent:
@@ -57,11 +58,13 @@ class LLDPAgent:
         # TODO: Implement.
 
         output = ''
-        dst = str(binascii.hexlify(data[0:6]))
-        src = str(binascii.hexlify(data[6:12]))
-        type = str(binascii.hexlify(data[12:14]))
+        #dst = str(binascii.hexlify(data[0:6]))
+        #src = str(binascii.hexlify(data[6:12]))
 
-        #print(len(data))
+        type = str(binascii.hexlify(data[12:14]))
+        print("data length: ")
+        print(len(data))
+
         #print(":::")
         #print(str(binascii.hexlify(data[0:6])))
         #print(":::")
@@ -74,15 +77,11 @@ class LLDPAgent:
 
         if type=='88cc':
             lldpM = LLDPMessage()
-            output += 'LLDPMessage(src_mac='
-            output += src[0:2]+":"+src[2:4]+":"+src[4:6]
-            tlv = data[14:16]
-            #tlv_length = int(0000000111111111,2) & tlv
-            print("tlv_length")
-            print(tlv << 7)
+            lldpM.load(data[14:len(data)-1])
+            print(lldpM.__str__())
 
 
-        print(output)
+        #print(output)
 
 
 
