@@ -1,6 +1,6 @@
 from lldpa.tlvs import base
 class LLDPMessage(object):
-    tlv_list = list(base)
+    #tlv_list = list(base)
     def __init__(self, src_mac=""):
         pass  # TODO: Implement.
 
