@@ -33,7 +33,7 @@ class LLDPMessage(object):
         print("test")
         print(bytes_in)
         print(bytes_in[0])
-        print(bytes_in[0] & int('11111110',2))
+        print(bytes_in[0] >> 1)
 
 
         return bytearray()  # TODO: Implement.
