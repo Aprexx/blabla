@@ -1,6 +1,8 @@
 class LLDPTLV(object):
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
+
+        print("finally")
         pass  # TODO: Implement.
 
     def load(self, bytes_in):

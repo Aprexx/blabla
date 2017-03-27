@@ -34,9 +34,14 @@ class LLDPMessage(object):
         print("test")
         hex_bytes_in = binascii.hexlify(bytes_in)
 
-        tl_string = bin(int(hex_bytes_in[0:4], 16))[2:].zfill(16)
-        type = int(tl_string[0:7].zfill(16),2)
-        length = int(tl_string[7:16].zfill(16),2)
+        while len(hex_bytes_in)>0:
+            tl_string = bin(int(hex_bytes_in[0:4], 16))[2:]
+            type = int(tl_string[0:7].zfill(16), 2)
+            length = int(tl_string[7:16].zfill(16), 2)
+            end = length*2+2
+            new_tlv = base.LLDPTLV(type, hex_bytes_in[16:end], length)
+
+
         print(type)
         print(length)
 
@@ -45,6 +50,3 @@ class LLDPMessage(object):
     def dump(self):
         """Dumps all TLVs of the message"""
         return bytearray()  # TODO: Implement.
-
-    def get_tlv(self, bytes):
-        pass
