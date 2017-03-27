@@ -32,7 +32,10 @@ class LLDPMessage(object):
         :return: None
         """
         print("test")
-        print(binascii.hexlify(bytes_in))
+        hex_bytes_in = binascii.hexlify(bytes_in)
+
+        tl_string = bin(int(hex_bytes_in, 16))[2:].zfill(16)
+        print(tl_string)
 
 
         return bytearray()  # TODO: Implement.
