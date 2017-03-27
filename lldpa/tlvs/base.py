@@ -1,9 +1,6 @@
 from struct import *
 import binascii
 class LLDPTLV(object):
-    tlv_type = -1
-    value = ''
-    length = -1
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
 
@@ -12,7 +9,6 @@ class LLDPTLV(object):
         self.length = length;
         print("finally")
         print(length)
-        pass  # TODO: Implement.
 
     def load(self, bytes_in):
         """Load TLV from raw bytes
@@ -29,7 +25,7 @@ class LLDPTLV(object):
         tl_string = bin(int(temp[0:4], 16))[2:]
         self.tlv_type = int(tl_string[0:7].zfill(16), 2)
         self.length = int(tl_string[7:16].zfill(16), 2)
-        self.value = tl_string[16:]
+        self.value = temp[4:]
 
 
     def dump(self):
@@ -42,11 +38,10 @@ class LLDPTLV(object):
         print("dump")
         print(bin(self.tlv_type))
         print(bin(self.length))
+        head = hex(int(bin(self.tlv_type)[2:].zfill(8)[1:8] + bin(self.length)[2:].zfill(9)),2)[2:]
+        print(head + self.value)
+        return binascii.unhexlify(head + self.value)
 
-
-
-
-        return bytearray()  # TODO: Implement.
 
     def _type(self):
         """The TLV Type"""

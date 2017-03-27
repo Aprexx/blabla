@@ -41,6 +41,7 @@ class LLDPAgent:
             packet = self.recv_socket.recv(65565)
             #print(packet)
             thread.start_new_thread(self.parse_lldp_frame, (packet,))
+            break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):

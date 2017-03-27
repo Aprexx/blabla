@@ -3,7 +3,8 @@ from lldpa.tlvs import base
 
 class TLVChassisId(base.LLDPTLV):
     def __init__(self, sub_type=0, chassis_id=""):
-        pass  # TODO: Implement.
+        self.sub_type = sub_type
+        self.chassis_id = chassis_id
 
     def __str__(self):
         """Return a string representation of the TLV"""

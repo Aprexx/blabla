@@ -1,15 +1,17 @@
 from lldpa.tlvs import base
 import binascii
 class LLDPMessage(object):
-    tlv_list = []
     def __init__(self, src_mac=""):
-        pass  # TODO: Implement.
+        self.tlv_list = list()
+        self.mac = src_mac
 
     def __getitem__(self, index):
-        return None  # TODO: Implement.
+        return self.tlv_list.__getitem__(index)
 
     def __str__(self):
-        return ""  # TODO: Implement.
+        output = 'LLDPMessage('
+
+        return output
 
     def __repr__(self):
         return self.__str__()
