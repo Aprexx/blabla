@@ -47,3 +47,4 @@ class LLDPMessage(object):
         return bytearray()  # TODO: Implement.
 
     def get_tlv(self, bytes):
+        pass
