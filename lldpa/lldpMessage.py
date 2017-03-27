@@ -35,8 +35,8 @@ class LLDPMessage(object):
         hex_bytes_in = binascii.hexlify(bytes_in)
 
         tl_string = bin(int(hex_bytes_in[0:4], 16))[2:].zfill(16)
-        type = int(bin(tl_string[0:7])[2:].zfill(16),2)
-        length = int(bin(tl_string[7:16])[2:].zfill(16),2)
+        type = int(tl_string[0:7].zfill(16),2)
+        length = int(tl_string[7:16].zfill(16),2)
         print(type)
         print(length)
 
