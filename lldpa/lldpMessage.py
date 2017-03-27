@@ -1,4 +1,5 @@
 from lldpa.tlvs import base
+import binascii
 class LLDPMessage(object):
     #tlv_list = list(base)
     def __init__(self, src_mac=""):
