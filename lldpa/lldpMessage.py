@@ -40,6 +40,7 @@ class LLDPMessage(object):
             length = int(tl_string[7:16].zfill(16), 2)
             end = length*2+2
             new_tlv = base.LLDPTLV(type, hex_bytes_in[16:end], length)
+            break
 
 
         print(type)
