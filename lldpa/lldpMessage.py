@@ -32,7 +32,6 @@ class LLDPMessage(object):
         :return: None
         """
         print("test")
-        print(bytes_in[0:1] >> 1)
         print(binascii.hexlify(bytes_in))
 
 
