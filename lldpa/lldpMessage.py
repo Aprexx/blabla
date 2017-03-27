@@ -32,6 +32,7 @@ class LLDPMessage(object):
         :return: None
         """
         print("test")
+        print()
         hex_bytes_in = binascii.hexlify(bytes_in)
 
         while len(hex_bytes_in)>0:

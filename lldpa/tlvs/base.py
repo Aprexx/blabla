@@ -1,3 +1,5 @@
+from struct import *
+import binascii
 class LLDPTLV(object):
     tlv_type = -1
     value = ''
@@ -23,7 +25,12 @@ class LLDPTLV(object):
 
         :rtype: None
         """
-        pass  # TODO: Implement.
+        temp = binascii.hexlify(bytes_in)
+        tl_string = bin(int(temp[0:4], 16))[2:]
+        self.tlv_type = int(tl_string[0:7].zfill(16), 2)
+        self.length = int(tl_string[7:16].zfill(16), 2)
+        self.value = tl_string[16:]
+
 
     def dump(self):
         """Dump TLV into raw bytes
@@ -32,27 +39,34 @@ class LLDPTLV(object):
 
         :rtype: bytearray
         """
+        print("dump")
+        print(bin(self.tlv_type))
+        print(bin(self.length))
+
+
+
+
         return bytearray()  # TODO: Implement.
 
     def _type(self):
         """The TLV Type"""
-        return 0  # TODO: Implement.
+        return self.tlv_type
 
     def type_bytes(self):
         """Return the TLV type as bytes"""
-        return bytearray()  # TODO: Implement.
+        return pack('h', self.tlv_type)
 
     def _length(self):
         """The TLV Length"""
-        return 0  # TODO: Implement.
+        return self.length
 
     def length_bytes(self):
         """Return the TLV length as bytes"""
-        return bytearray()  # TODO: Implement.
+        return pack('i', self.length)
 
     def value_bytes(self):
         """Return the TLV value as bytes"""
-        return bytearray()  # TODO: Implement.
+        return binascii.unhexlify(self.value)
 
     def __getattr__(self, item):
         if item == "type":
