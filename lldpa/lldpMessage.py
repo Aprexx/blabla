@@ -35,7 +35,10 @@ class LLDPMessage(object):
         hex_bytes_in = binascii.hexlify(bytes_in)
 
         tl_string = bin(int(hex_bytes_in[0:4], 16))[2:].zfill(16)
-        print(tl_string)
+        type = tl_string[0:6]
+        length = tl_string[6:16]
+        print(type)
+        print(length)
 
 
         return bytearray()  # TODO: Implement.
