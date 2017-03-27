@@ -1,8 +1,15 @@
 class LLDPTLV(object):
+    tlv_type = -1
+    value = ''
+    length = -1
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
 
+        self.tlv_type = tlv_type
+        self.value = value
+        self.length = length;
         print("finally")
+        print(length)
         pass  # TODO: Implement.
 
     def load(self, bytes_in):
