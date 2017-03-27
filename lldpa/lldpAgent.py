@@ -57,22 +57,13 @@ class LLDPAgent:
 
         # TODO: Implement.
 
-        output = ''
-        #dst = str(binascii.hexlify(data[0:6]))
-        #src = str(binascii.hexlify(data[6:12]))
+        # TODO: destination mac has to be valid
+
 
         type = str(binascii.hexlify(data[12:14]))
         print("data length: ")
         print(len(data))
 
-        #print(":::")
-        #print(str(binascii.hexlify(data[0:6])))
-        #print(":::")
-        #print(str(binascii.hexlify(data[6:12])))
-        #print(":::")
-        #print(str(binascii.hexlify(data[12:14])))
-        #print(":::")
-        #print(str(binascii.hexlify(data[14:len(data)-1])))
 
 
         if type=='88cc':

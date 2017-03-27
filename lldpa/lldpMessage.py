@@ -1,7 +1,7 @@
 from lldpa.tlvs import base
 import binascii
 class LLDPMessage(object):
-    #tlv_list = list(base)
+    tlv_list = list(base)
     def __init__(self, src_mac=""):
         pass  # TODO: Implement.
 
@@ -16,7 +16,7 @@ class LLDPMessage(object):
 
     def append(self, tlv):
         """Appends a tlv to the list of tlvs"""
-        list.__add__(tlv)
+        self.tlv_list.append(tlv)
 
     def load(self, bytes_in):
         """Parses a byte stream. The first three TLVs MUST be (in this order):
@@ -35,14 +35,15 @@ class LLDPMessage(object):
         hex_bytes_in = binascii.hexlify(bytes_in)
 
         tl_string = bin(int(hex_bytes_in[0:4], 16))[2:].zfill(16)
-        type = tl_string[0:6]
-        length = tl_string[6:16]
+        type = tl_string[0:7]
+        length = tl_string[7:16]
         print(type)
         print(length)
-
 
         return bytearray()  # TODO: Implement.
 
     def dump(self):
         """Dumps all TLVs of the message"""
         return bytearray()  # TODO: Implement.
+
+    def get_tlv(self, bytes):
