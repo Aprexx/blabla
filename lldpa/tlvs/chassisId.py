@@ -30,7 +30,7 @@ class TLVChassisId(base.LLDPTLV):
                 print("test")
                 self.sub_type2 = 4
                 temp2 = data[2:]
-                self.chassis_id = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
+                self.chassis_id2 = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
                 print(self.chassis_id2)
             else:
                 print("chassis subtype != 4")
