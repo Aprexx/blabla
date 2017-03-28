@@ -13,7 +13,7 @@ class LLDPMessage(object):
         return self.tlv_list.__getitem__(index)
 
     def __str__(self):
-        output = 'LLDPMessage(src_mac=' + self.src_mac + ','
+        output = 'LLDPMessage(src_mac=' + self.mac + ','
         output += self.tlv_list(1).__str__() + ','
         output += self.tlv_list(2).__str__() + ','
         output += self.tlv_list(3).__str__() + ')'
