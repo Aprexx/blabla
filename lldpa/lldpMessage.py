@@ -69,6 +69,7 @@ class LLDPMessage(object):
 
         while len(hex_bytes_in) > 0:
             print(len(hex_bytes_in))
+            print(hex_bytes_in)
             payload, new_hex, temp_ty = self.extract(hex_bytes_in)
             if temp_ty == 0:
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
