@@ -8,7 +8,7 @@ class TLVTTL(base.LLDPTLV):
         self.ttl2 = ttl
         self.tlv_type2 = 3
         self.length2 = 2
-        self.value = binascii.unhexlify(struct.pack("!H", self.ttl()))
+        self.value = binascii.hexlify(struct.pack("!H", self.ttl()))
 
     def __str__(self):
         """Return a string representation of the TLV"""
