@@ -47,8 +47,8 @@ class TLVChassisId(base.LLDPTLV):
         # print(output[2:].zfill(16))
         # return binascii.unhexlify(output[2:].zfill(16))
         result = bytearray()
-        result.append(struct.pack("!H", self.tlv_type2 << 1)[1:2])
-        result.append(struct.pack("!H", self.length2)[1:2])
+        result.append(struct.pack("!H", self.type << 1)[1:2])
+        result.append(struct.pack("!H", self.length)[1:2])
         result.append(struct.pack("B", self.sub_type2))
         result.extend(binascii.unhexlify(self.chassis_id2.replace(":", "")))
         return result
