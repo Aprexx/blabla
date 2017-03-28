@@ -11,6 +11,7 @@ class TLVChassisId(base.LLDPTLV):
         self.chassis_id2 = chassis_id
         self.tlv_type = 1
         self.length2 = 7
+        self.value = '04' + chassis_id.replace(":", "")
 
     def __str__(self):
         """Return a string representation of the TLV"""
