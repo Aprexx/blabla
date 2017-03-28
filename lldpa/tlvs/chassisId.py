@@ -49,6 +49,7 @@ class TLVChassisId(base.LLDPTLV):
         return result
 
     def chassis_id(self):
+        print(self.chassis_id)
         return self.chassis_id
 
     def sub_type(self):
