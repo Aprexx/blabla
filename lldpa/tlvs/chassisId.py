@@ -8,13 +8,13 @@ class TLVChassisId(base.LLDPTLV):
         self.sub_type2 = sub_type
         if (sub_type != 4):
             print("chassis subtype != 4 cons")
-        self.chassis_id = chassis_id
+        self.chassis_id2 = chassis_id
         self.tlv_type = 1
         self.length = 7
 
     def __str__(self):
         """Return a string representation of the TLV"""
-        return "chassis_id=" + self.chassis_id
+        return "chassis_id=" + self.chassis_id2
 
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
@@ -31,7 +31,7 @@ class TLVChassisId(base.LLDPTLV):
                 self.sub_type2 = 4
                 temp2 = data[2:]
                 self.chassis_id = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
-                print(self.chassis_id)
+                print(self.chassis_id2)
             else:
                 print("chassis subtype != 4")
         else:
@@ -47,11 +47,11 @@ class TLVChassisId(base.LLDPTLV):
         result.append(struct.pack("!H", self.tlv_type << 1)[1:2])
         result.append(struct.pack("!H", self.length)[1:2])
         result.append(struct.pack("B", self.sub_type2))
-        result.extend(binascii.unhexlify(self.chassis_id.replace(":", "")))
+        result.extend(binascii.unhexlify(self.chassis_id2.replace(":", "")))
         return result
 
     def chassis_id(self):
-        return self.chassis_id
+        return self.chassis_id2
 
     def sub_type(self):
         return self.sub_type2
