@@ -9,7 +9,7 @@ class TLVPortId(base.LLDPTLV):
         self.tlv_type2 = 2
         if self.sub_type2 == 3:
             self.length2 = 7
-            self.value = '03' + port_id.replace((":", ""))
+            self.value = '03' + port_id.replace(":", "")
         if self.sub_type2 == 7:
             self.length2 = 1 + len(self.port_id2)
             self.value = '07' + port_id.encode("hex")
