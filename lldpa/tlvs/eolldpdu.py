@@ -4,8 +4,9 @@ import binascii
 
 class TVLEoLLDPDU(base.LLDPTLV):
     def __init__(self):
-        self.tlv_type = 0
-        self.length = 0
+        self.tlv_type2 = 0
+        self.length2 = 0
+        self.value = ""
 
     def __str__(self):
         """Return a string representation of the TLV"""
