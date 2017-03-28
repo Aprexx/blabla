@@ -51,7 +51,7 @@ class LLDPTLV(object):
 
     def _length(self):
         """The TLV Length"""
-        return self.length
+        return 0  #  TODO: Implement
 
     def length_bytes(self):
         """Return the TLV length as bytes"""
