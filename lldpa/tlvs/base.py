@@ -55,7 +55,7 @@ class LLDPTLV(object):
 
     def length_bytes(self):
         """Return the TLV length as bytes"""
-        return pack('i', self.length)
+        return binascii.unhexlify(hex(self.length))
 
     def value_bytes(self):
         """Return the TLV value as bytes"""
