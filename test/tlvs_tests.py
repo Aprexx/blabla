@@ -135,6 +135,7 @@ class TLVChassisIdTests(unittest.TestCase):
         chassis_id_tlv_bytes = '\x02\x07\x04\xF4\x24\x00\xc8\x07\x11'
         chassis_id_tlv = chassisId.TLVChassisId(sub_type=4, chassis_id="F4:24:00:C8:07:11")
         chassis_id_tlv.load(chassis_id_tlv_bytes)
+        print(chassis_id_tlv.sub_type())
         self.assertEqual(chassis_id_tlv.sub_type(), 4)
         self.assertEqual(chassis_id_tlv.chassis_id(), "F4:24:00:C8:07:11")
 
