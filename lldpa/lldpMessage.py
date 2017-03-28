@@ -72,7 +72,7 @@ class LLDPMessage(object):
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
                 break
             else:
-                new_tlv = base.LLDPTLV()
+                new_tlv = base.LLDPTLV(temp_ty, "", 0)
                 new_tlv.load(binascii.unhexlify(payload))
                 self.tlv_list.append(new_tlv)
             hex_bytes_in = new_hex
