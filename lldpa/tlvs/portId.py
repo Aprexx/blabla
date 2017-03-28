@@ -15,12 +15,12 @@ class TLVPortId(base.LLDPTLV):
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
         tl_string = bin(int(temp[0:4], 16))[2:]
-        tlv_type = int(tl_string[0:7].zfill(16), 2)
-        #  length = int(tl_string[7:16].zfill(16), 2)
+        self.tlv_type = int(tl_string[0:7].zfill(16), 2)
+        self.length = int(tl_string[7:16].zfill(16), 2)
         data = temp[4:]
-        if tlv_type == 1:
+        if self.tlv_type == 2:
             if int(data[0:2], 16) == 3:
-                self.port_id = ':'.join([data[i:i+2] for i in range(2, len(data), 2)])
+                self.port_id = data[2:6] + ":" + data[6:10] + ":" + data[10:14]
             elif int(data[0:2], 16) == 7:
                 self.port_id = data[2:].decode("hex")
             else:

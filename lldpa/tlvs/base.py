@@ -3,12 +3,10 @@ import binascii
 class LLDPTLV(object):
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
-
         self.tlv_type = tlv_type
         self.value = value
         self.length = length
-        print("finally")
-        print(length)
+
 
     def load(self, bytes_in):
         """Load TLV from raw bytes
