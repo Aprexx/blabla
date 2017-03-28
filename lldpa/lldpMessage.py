@@ -39,21 +39,21 @@ class LLDPMessage(object):
         """
         hex_bytes_in = binascii.hexlify(bytes_in)
 
-        chassis_payload, new_hex, temp_ty = self.extract(1, hex_bytes_in)
+        chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 1:
             self.tlv_list.append(chassisId.TLVChassisId.load(chassis_payload))
         else:
             print("wrong tlv order")
         hex_bytes_in = new_hex
 
-        port_payload, new_hex, temp_ty = self.extract(1, hex_bytes_in)
+        port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 2:
             self.tlv_list.append(portId.TLVPortId.load(port_payload))
         else:
             print("wrong tlv order")
         hex_bytes_in = new_hex
 
-        ttl_payload, new_hex, temp_ty = self.extract(1, hex_bytes_in)
+        ttl_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 3:
             self.tlv_list.append(ttl.TLVTTL.load(chassis_payload))
         else:
