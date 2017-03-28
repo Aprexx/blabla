@@ -36,4 +36,4 @@ class TLVTTL(base.LLDPTLV):
         return result
 
     def ttl(self):
-        return self.ttl
+        return self.ttl2
