@@ -22,6 +22,7 @@ class TLVChassisId(base.LLDPTLV):
         self.tlv_type = int(tl_string[0:7].zfill(16), 2)
         self.length = int(tl_string[7:16].zfill(16), 2)
         data = temp[4:]
+        print(self.tlv_type)
         if self.tlv_type == 1:
             if int(data[0:2], 16) == 4:
                 self.sub_type = 4
