@@ -27,6 +27,7 @@ class TLVChassisId(base.LLDPTLV):
         print(self.tlv_type)
         if self.tlv_type == 1:
             if int(data[0:2], 16) == 4:
+                print("test")
                 self.sub_type = 4
                 self.chassis_id = data[2:6] + ":" + data[6:10] + ":" + data[10:14]
             else:
