@@ -6,6 +6,7 @@ class TLVChassisId(base.LLDPTLV):
     def __init__(self, sub_type=0, chassis_id=""):
         self.sub_type = sub_type
         self.chassis_id = chassis_id
+        self.tlv_type = 1
 
     def __str__(self):
         """Return a string representation of the TLV"""

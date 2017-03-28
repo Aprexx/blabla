@@ -5,6 +5,7 @@ import binascii
 class TLVTTL(base.LLDPTLV):
     def __init__(self, ttl=100):
         self.ttl = ttl
+        self.tlv_type = 3
 
     def __str__(self):
         """Return a string representation of the TLV"""
