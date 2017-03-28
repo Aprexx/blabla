@@ -41,21 +41,27 @@ class LLDPMessage(object):
 
         chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 1:
-            self.tlv_list.append(chassisId.TLVChassisId.load(chassis_payload))
+            new_tlv = chassisId.TLVChassisId()
+            new_tlv.load(chassis_payload)
+            self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
         hex_bytes_in = new_hex
 
         port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 2:
-            self.tlv_list.append(portId.TLVPortId.load(port_payload))
+            new_tlv = portId.TLVPortId()
+            new_tlv.load(port_payload)
+            self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
         hex_bytes_in = new_hex
 
         ttl_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 3:
-            self.tlv_list.append(ttl.TLVTTL.load(chassis_payload))
+            new_tlv = ttl.TLVTTL()
+            new_tlv.load(ttl_payload)
+            self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
 
@@ -65,7 +71,9 @@ class LLDPMessage(object):
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
                 break
             else:
-                self.tlv_list.append(base.LLDPTLV)
+                new_tlv = base.LLDPTLV()
+                new_tlv.load(payload)
+                self.tlv_list.append(new_tlv)
             hex_bytes_in = new_hex
 
 
