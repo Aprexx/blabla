@@ -1,5 +1,6 @@
 from struct import *
 import binascii
+import struct
 class LLDPTLV(object):
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
@@ -51,7 +52,7 @@ class LLDPTLV(object):
 
     def _length(self):
         """The TLV Length"""
-        return 0  #  TODO: Implement
+        return struct.pack("!H", self.length)
 
     def length_bytes(self):
         """Return the TLV length as bytes"""
