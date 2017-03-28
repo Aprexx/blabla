@@ -25,7 +25,7 @@ class TLVChassisId(base.LLDPTLV):
         data = temp[4:]
         self.value = data
         if self.type == 1:
-            print(self.value)
+            print(self.value[0:2])
             if int(self.value[0:2], 16) == 4:
                 self.sub_type2 = 4
                 temp2 = self.value[2:]
