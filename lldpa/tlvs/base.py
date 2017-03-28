@@ -4,9 +4,9 @@ import struct
 class LLDPTLV(object):
     def __init__(self, tlv_type, value, length=0):
         """Constructor"""
-        self.tlv_type = tlv_type
+        self.tlv_type2 = tlv_type
         self.value = value
-        self.length = length
+        self.length2 = length
 
 
     def load(self, bytes_in):
@@ -22,8 +22,8 @@ class LLDPTLV(object):
         """
         temp = binascii.hexlify(bytes_in)
         tl_string = bin(int(temp[0:4], 16))[2:]
-        self.tlv_type = int(tl_string[0:7].zfill(16), 2)
-        self.length = int(tl_string[7:16].zfill(16), 2)
+        self.tlv_type2 = int(tl_string[0:7].zfill(16), 2)
+        self.length2 = int(tl_string[7:16].zfill(16), 2)
         self.value = temp[4:]
 
 
@@ -34,29 +34,25 @@ class LLDPTLV(object):
 
         :rtype: bytearray
         """
-        print("dump")
-        print(bin(self.tlv_type))
-        print(bin(self.length))
-        head = hex(int(bin(self.tlv_type)[2:].zfill(8)[1:8] + bin(self.length)[2:].zfill(9)),2)[2:]
-        print(head + self.value)
+        head = hex(int(bin(self.tlv_type2)[2:].zfill(8)[1:8] + bin(self.length2)[2:].zfill(9)),2)[2:]
         return binascii.unhexlify(head + self.value)
 
 
     def _type(self):
         """The TLV Type"""
-        return self.tlv_type
+        return self.tlv_type2
 
     def type_bytes(self):
         """Return the TLV type as bytes"""
-        return pack('h', self.tlv_type)
+        return pack('!H', self.tlv_type2)
 
     def _length(self):
         """The TLV Length"""
-        return struct.pack("!H", self.length)
+        return self.length2
 
     def length_bytes(self):
         """Return the TLV length as bytes"""
-        return binascii.unhexlify(hex(self.length))
+        return pack('!H', self.length2)
 
     def value_bytes(self):
         """Return the TLV value as bytes"""
