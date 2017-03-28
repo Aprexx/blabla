@@ -1,5 +1,6 @@
 from lldpa.tlvs import base
 import binascii
+import struct
 
 
 class TLVChassisId(base.LLDPTLV):
@@ -31,11 +32,17 @@ class TLVChassisId(base.LLDPTLV):
             print("chassis type != 1")
 
     def dump(self):
-        output = hex(int((bin(1)[2:].zfill(7) + bin(7)[2:].zfill(9) + bin(4)[2:].zfill(8)), 2))
-        output += self.chassis_id.replace(":", "")
-        print("huhuu")
-        print(output[2:].zfill(16))
-        return binascii.unhexlify(output[2:].zfill(16))
+        # output = hex(int((bin(1)[2:].zfill(7) + bin(7)[2:].zfill(9) + bin(4)[2:].zfill(8)), 2))
+        # output += self.chassis_id.replace(":", "")
+        # print("huhuu")
+        # print(output[2:].zfill(16))
+        # return binascii.unhexlify(output[2:].zfill(16))
+        result = bytearray()
+        result.append(struct.pack("!H", self.tlv_type << 1)[1:2])
+        result.append(struct.pack("!H", self.length)[1:2])
+        result.append(struct.pack("B", self.sub_type))
+        result.extend(binascii.unhexlify(self.chassis_id.replace(":", "")))
+        return result
 
     def chassis_id(self):
         return self.chassis_id
