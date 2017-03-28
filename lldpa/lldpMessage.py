@@ -66,6 +66,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
+        hex_bytes_in = new_hex
 
         while len(hex_bytes_in) > 0:
             print(len(hex_bytes_in))
