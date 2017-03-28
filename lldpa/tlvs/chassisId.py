@@ -35,11 +35,6 @@ class TLVChassisId(base.LLDPTLV):
             print("chassis type != 1")
 
     def dump(self):
-        # output = hex(int((bin(1)[2:].zfill(7) + bin(7)[2:].zfill(9) + bin(4)[2:].zfill(8)), 2))
-        # output += self.chassis_id.replace(":", "")
-        # print("huhuu")
-        # print(output[2:].zfill(16))
-        # return binascii.unhexlify(output[2:].zfill(16))
         result = bytearray()
         result.append(struct.pack("!H", self.type << 1)[1:2])
         result.append(struct.pack("!H", self.length)[1:2])

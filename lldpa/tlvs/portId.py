@@ -35,29 +35,10 @@ class TLVPortId(base.LLDPTLV):
             print("port type != 2")
 
     def dump(self):
-        # if self.sub_type == 3:
-        #     output = hex(int((bin(2)[2:].zfill(7) + bin(7)[2:].zfill(9) + bin(3)[2:].zfill(8)), 2))
-        #     output += self.port_id.replace(":", "")
-        #     return binascii.unhexlify(output)
-        # elif self.sub_type == 7:
-        #     output = hex(int((bin(2)[2:].zfill(7) + bin(1+len(self.port_id))[2:].zfill(9) + bin(7)[2:].zfill(8)), 2))
-        #     for x in self.port_id:
-        #         output += x.encode('hex')
-        #     return binascii.unhexlify(output)
-        # else:
-        #     print("port dump error")
-
         result = bytearray()
         result.append(struct.pack("!H", self.type << 1)[1:2])
         result.append(struct.pack("!H", self.length2)[1:2])
-        result.append(struct.pack("B", self.sub_type()))
-        # if self.sub_type() == 3:
-        #     result.extend(binascii.unhexlify(self.port_id2.replace(":", "")))
-        # if self.sub_type() == 7:
-        #     for x in self.port_id():
-        #         result.extend(x.encode("hex"))
         result.extend(binascii.unhexlify(self.value))
-
         return result
 
     def sub_type(self):

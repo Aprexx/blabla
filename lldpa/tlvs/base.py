@@ -34,9 +34,11 @@ class LLDPTLV(object):
 
         :rtype: bytearray
         """
-        head = hex(int(bin(self.tlv_type2)[2:].zfill(8)[1:8] + bin(self.length2)[2:].zfill(9)),2)[2:]
-        return binascii.unhexlify(head + self.value)
-
+        result = bytearray()
+        result.append(struct.pack("!H", self.type << 1)[1:2])
+        result.append(struct.pack("!H", self.length2)[1:2])
+        result.extend(binascii.unhexlify(self.value))
+        return result
 
     def _type(self):
         """The TLV Type"""
