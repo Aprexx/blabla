@@ -40,6 +40,7 @@ class LLDPMessage(object):
         hex_bytes_in = binascii.hexlify(bytes_in)
         print("reading chassis")
         chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
+        print(chassis_payload)
         if temp_ty == 1:
             new_tlv = chassisId.TLVChassisId()
             new_tlv.load(binascii.unhexlify(chassis_payload))
