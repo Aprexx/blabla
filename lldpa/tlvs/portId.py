@@ -6,6 +6,7 @@ class TLVPortId(base.LLDPTLV):
     def __init__(self, sub_type=0, port_id=""):
         self.sub_type = sub_type
         self.port_id = port_id
+        self.tlv_type = 2
 
     def __str__(self):
         """Return a string representation of the TLV"""

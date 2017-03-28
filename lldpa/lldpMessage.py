@@ -1,4 +1,4 @@
-from lldpa.tlvs import base
+from lldpa.tlvs import *
 import binascii
 class LLDPMessage(object):
     def __init__(self, src_mac=""):
@@ -33,8 +33,6 @@ class LLDPMessage(object):
         :param bytes_in: The bytestream to parse
         :return: None
         """
-        print("test")
-        print()
         hex_bytes_in = binascii.hexlify(bytes_in)
 
         while len(hex_bytes_in)>0:
@@ -42,12 +40,8 @@ class LLDPMessage(object):
             type = int(tl_string[0:7].zfill(16), 2)
             length = int(tl_string[7:16].zfill(16), 2)
             end = length*2+2
-            new_tlv = base.LLDPTLV(type, hex_bytes_in[16:end], length)
+            #chass = chassisId().load(hex_bytes_in[0:end])
             break
-
-
-        print(type)
-        print(length)
 
         return bytearray()  # TODO: Implement.
 
