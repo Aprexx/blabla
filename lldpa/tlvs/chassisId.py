@@ -19,22 +19,16 @@ class TLVChassisId(base.LLDPTLV):
 
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
-        print(temp)
         tl_string = bin(int(temp[0:4], 16))[2:].zfill(16)
-        print(tl_string)
         self.tlv_type2 = int(tl_string[0:7].zfill(16), 2)
         self.length2 = int(tl_string[7:16].zfill(16), 2)
         data = temp[4:]
         self.value = data
-        print(self.tlv_type2)
-        if self.tlv_type2 == 1:
+        if self.type == 1:
             if int(data[0:2], 16) == 4:
-                print("test")
                 self.sub_type2 = 4
                 temp2 = data[2:]
                 self.chassis_id2 = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
-
-                print(self.type)
             else:
                 print("chassis subtype != 4")
         else:
