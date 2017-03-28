@@ -62,8 +62,8 @@ class LLDPAgent:
 
 
         type = str(binascii.hexlify(data[12:14]))
-        print("data length: ")
-        print(len(data))
+        #print("data length: ")
+        #print(len(data))
 
 
 

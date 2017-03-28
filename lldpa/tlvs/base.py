@@ -6,7 +6,7 @@ class LLDPTLV(object):
 
         self.tlv_type = tlv_type
         self.value = value
-        self.length = length;
+        self.length = length
         print("finally")
         print(length)
 

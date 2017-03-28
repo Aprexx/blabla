@@ -1,4 +1,5 @@
 from lldpa.tlvs import base
+import binascii
 
 
 class TVLEoLLDPDU(base.LLDPTLV):
@@ -10,7 +11,10 @@ class TVLEoLLDPDU(base.LLDPTLV):
         return ""  # TODO: Implement.
 
     def load(self, bytes_in):
-        pass  # TODO: Implement.
+        temp = binascii.hexlify(bytes_in)
+        if temp != '0000':
+            print("end not 0")
+
 
     def dump(self):
-        return bytearray()  # TODO: Implement.
+        return binascii.unhexlify('0000')
