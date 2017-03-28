@@ -35,7 +35,7 @@ class TLVChassisId(base.LLDPTLV):
         output += self.chassis_id.replace(":", "")
         print("huhuu")
         print(output)
-        return binascii.unhexlify(output)
+        return binascii.unhexlify(output[2:])
 
     def chassis_id(self):
         return self.chassis_id
