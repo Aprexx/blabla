@@ -18,7 +18,9 @@ class TLVChassisId(base.LLDPTLV):
 
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
+        print(temp)
         tl_string = bin(int(temp[0:4], 16))[2:]
+        print(tl_string)
         self.tlv_type = int(tl_string[0:7].zfill(16), 2)
         self.length = int(tl_string[7:16].zfill(16), 2)
         data = temp[4:]
