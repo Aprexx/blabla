@@ -38,7 +38,7 @@ class LLDPMessage(object):
         :return: None
         """
         hex_bytes_in = binascii.hexlify(bytes_in)
-
+        print("reading chassis")
         chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 1:
             new_tlv = chassisId.TLVChassisId()
@@ -46,6 +46,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
+        print(new_tlv.__str__())
         hex_bytes_in = new_hex
 
         port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
