@@ -30,6 +30,7 @@ class TLVChassisId(base.LLDPTLV):
                 print("test")
                 self.sub_type2 = 4
                 self.chassis_id = data[2:6] + ":" + data[6:10] + ":" + data[10:14]
+                print(self.chassis_id)
             else:
                 print("chassis subtype != 4")
         else:
