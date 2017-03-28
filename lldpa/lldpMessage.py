@@ -14,9 +14,9 @@ class LLDPMessage(object):
 
     def __str__(self):
         output = 'LLDPMessage(src_mac=' + self.mac + ','
-        output += self.tlv_list(1).__str__() + ','
-        output += self.tlv_list(2).__str__() + ','
-        output += self.tlv_list(3).__str__() + ')'
+        output += self.tlv_list.__getitem__(1).__str__() + ','
+        output += self.tlv_list.__getitem__(2).__str__() + ','
+        output += self.tlv_list.__getitem__(3).__str__() + ')'
         return output
 
     def __repr__(self):
