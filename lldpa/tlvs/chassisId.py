@@ -5,7 +5,7 @@ import struct
 
 class TLVChassisId(base.LLDPTLV):
     def __init__(self, sub_type=0, chassis_id=""):
-        self.sub_type = sub_type
+        self.sub_type2 = sub_type
         if (sub_type != 4):
             print("chassis subtype != 4 cons")
         self.chassis_id = chassis_id
@@ -28,7 +28,7 @@ class TLVChassisId(base.LLDPTLV):
         if self.tlv_type == 1:
             if int(data[0:2], 16) == 4:
                 print("test")
-                self.sub_type = 4
+                self.sub_type2 = 4
                 self.chassis_id = data[2:6] + ":" + data[6:10] + ":" + data[10:14]
             else:
                 print("chassis subtype != 4")
@@ -44,7 +44,7 @@ class TLVChassisId(base.LLDPTLV):
         result = bytearray()
         result.append(struct.pack("!H", self.tlv_type << 1)[1:2])
         result.append(struct.pack("!H", self.length)[1:2])
-        result.append(struct.pack("B", self.sub_type))
+        result.append(struct.pack("B", self.sub_type2))
         result.extend(binascii.unhexlify(self.chassis_id.replace(":", "")))
         return result
 
@@ -52,5 +52,4 @@ class TLVChassisId(base.LLDPTLV):
         return self.chassis_id
 
     def sub_type(self):
-        print(self.sub_type)
         return self.sub_type
