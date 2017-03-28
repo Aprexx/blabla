@@ -7,6 +7,12 @@ class TLVPortId(base.LLDPTLV):
         self.sub_type2 = sub_type
         self.port_id2 = port_id
         self.tlv_type2 = 2
+        if self.sub_type2 == 3:
+            self.length2 = 7
+            self.value = '03' + port_id.replace((":", ""))
+        if self.sub_type2 == 7:
+            self.length2 = 1 + len(self.port_id2)
+            self.value = '07' + port_id.encode("hex")
 
     def __str__(self):
         """Return a string representation of the TLV"""
@@ -43,13 +49,14 @@ class TLVPortId(base.LLDPTLV):
 
         result = bytearray()
         result.append(struct.pack("!H", self.type << 1)[1:2])
-        result.append(struct.pack("!H", self.length)[1:2])
+        result.append(struct.pack("!H", self.length2)[1:2])
         result.append(struct.pack("B", self.sub_type()))
-        if self.sub_type() == 3:
-            result.extend(binascii.unhexlify(self.port_id2.replace(":", "")))
-        if self.sub_type() == 7:
-            for x in self.port_id():
-                result.extend(x.encode("hex"))
+        # if self.sub_type() == 3:
+        #     result.extend(binascii.unhexlify(self.port_id2.replace(":", "")))
+        # if self.sub_type() == 7:
+        #     for x in self.port_id():
+        #         result.extend(x.encode("hex"))
+        result.extend(binascii.unhexlify(self.value))
 
         return result
 
