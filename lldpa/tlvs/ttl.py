@@ -12,7 +12,7 @@ class TLVTTL(base.LLDPTLV):
 
     def __str__(self):
         """Return a string representation of the TLV"""
-        return "ttl=" + str(self.ttl)
+        return "ttl=" + str(self.ttl2)
 
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
