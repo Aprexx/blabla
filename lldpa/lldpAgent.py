@@ -6,6 +6,7 @@ import time
 import socket
 import thread
 from lldpa.lldpMessage import LLDPMessage
+from lldpa.lldpExceptions import ImproperDestinationMACException
 
 
 class LLDPAgent:
@@ -39,7 +40,6 @@ class LLDPAgent:
         while not self.terminate:
             pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
             packet = self.recv_socket.recv(65565)
-            #print(packet)
             thread.start_new_thread(self.parse_lldp_frame, (packet,))
             break
         self.recv_socket.close()
@@ -55,29 +55,20 @@ class LLDPAgent:
         :param data: the data to parse
         :return:
         """
-
-        # TODO: Implement.
-
         # TODO: destination mac has to be valid
 
 
         type = str(binascii.hexlify(data[12:14]))
-        #print("data length: ")
-        #print(len(data))
+        dst = binascii.hexlify((data[0:6]))
+        src = binascii.hexlify((data[6:12]))
 
+        if dst == src:
+            return
 
-
-        if type=='88cc':
+        if type == '88cc':
             lldpM = LLDPMessage()
             lldpM.load(data[14:])
             print(lldpM.__str__())
-
-
-        #print(output)
-
-
-
-
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
