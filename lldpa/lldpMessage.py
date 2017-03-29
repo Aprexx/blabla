@@ -41,7 +41,6 @@ class LLDPMessage(object):
         :return: None
         """
         hex_bytes_in = binascii.hexlify(bytes_in)
-        print("reading chassis")
         chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         print(chassis_payload)
         if temp_ty == 1:
@@ -49,7 +48,6 @@ class LLDPMessage(object):
             new_tlv.load(binascii.unhexlify(chassis_payload))
             self.tlv_list.append(new_tlv)
         else:
-            print("wrong tlv order")
             raise ImproperTLVOrderException(1, temp_ty)
         hex_bytes_in = new_hex
 
@@ -59,7 +57,6 @@ class LLDPMessage(object):
             new_tlv.load(binascii.unhexlify(port_payload))
             self.tlv_list.append(new_tlv)
         else:
-            print("wrong tlv order")
             raise ImproperTLVOrderException(2, temp_ty)
         hex_bytes_in = new_hex
 
@@ -69,7 +66,6 @@ class LLDPMessage(object):
             new_tlv.load(binascii.unhexlify(ttl_payload))
             self.tlv_list.append(new_tlv)
         else:
-            print("wrong tlv order")
             raise ImproperTLVOrderException(3, temp_ty)
         hex_bytes_in = new_hex
 
@@ -77,6 +73,9 @@ class LLDPMessage(object):
             print(len(hex_bytes_in))
             print(hex_bytes_in)
             payload, new_hex, temp_ty = self.extract(hex_bytes_in)
+            print("--")
+            print(binascii.unhexlify(payload))
+            print(temp_ty)
             if temp_ty == 0:
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
                 return
