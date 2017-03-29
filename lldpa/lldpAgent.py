@@ -69,7 +69,7 @@ class LLDPAgent:
 
         if type=='88cc':
             lldpM = LLDPMessage()
-            lldpM.load(data[14:len(data)-1])
+            lldpM.load(data[14:])
             print(lldpM.__str__())
 
 
