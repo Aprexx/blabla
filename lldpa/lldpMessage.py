@@ -80,10 +80,12 @@ class LLDPMessage(object):
             if temp_ty == 0:
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
                 return
-            else:
+            elif temp_ty == 4 or temp_ty == 5 or temp_ty == 6 or temp_ty == 7 or temp_ty == 8 or temp_ty == 127:
                 new_tlv = base.LLDPTLV(temp_ty, "", 0)
                 new_tlv.load(binascii.unhexlify(payload))
                 self.tlv_list.append(new_tlv)
+            else:
+                raise OptionalTLVTypeOutOfRangeException(temp_ty)
             hex_bytes_in = new_hex
         raise Exception("Missing EOL")
 
