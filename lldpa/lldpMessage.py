@@ -50,7 +50,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
-            raise ImproperTLVOrderException(1,temp_ty)
+            raise ImproperTLVOrderException(1, temp_ty)
         hex_bytes_in = new_hex
 
         port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
@@ -60,7 +60,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
-            raise ImproperTLVOrderException(2,temp_ty)
+            raise ImproperTLVOrderException(2, temp_ty)
         hex_bytes_in = new_hex
 
         ttl_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
@@ -79,15 +79,14 @@ class LLDPMessage(object):
             payload, new_hex, temp_ty = self.extract(hex_bytes_in)
             if temp_ty == 0:
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
-                break
+                return
             else:
                 new_tlv = base.LLDPTLV(temp_ty, "", 0)
                 new_tlv.load(binascii.unhexlify(payload))
                 self.tlv_list.append(new_tlv)
             hex_bytes_in = new_hex
+        raise Exception("Missing EOL")
 
-
-        return bytearray()
 
     def dump(self):
         """Dumps all TLVs of the message"""
