@@ -73,7 +73,7 @@ class LLDPMessage(object):
             print(hex_bytes_in)
             payload, new_hex, temp_ty = self.extract(hex_bytes_in)
             print("--")
-            print(binascii.unhexlify(payload))
+            print(payload)
             print(temp_ty)
             if temp_ty == 0:
                 self.tlv_list.append(eolldpdu.TVLEoLLDPDU())
