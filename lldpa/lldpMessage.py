@@ -3,6 +3,7 @@ from lldpa.tlvs import chassisId
 from lldpa.tlvs import eolldpdu
 from lldpa.tlvs import portId
 from lldpa.tlvs import ttl
+from lldpa.lldpExceptions import *
 import binascii
 class LLDPMessage(object):
     def __init__(self, src_mac=""):
@@ -49,7 +50,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
-        print(new_tlv.__str__())
+            raise ImproperTLVOrderException(1,temp_ty)
         hex_bytes_in = new_hex
 
         port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
@@ -59,6 +60,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
+            raise ImproperTLVOrderException(2,temp_ty)
         hex_bytes_in = new_hex
 
         ttl_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
@@ -68,6 +70,7 @@ class LLDPMessage(object):
             self.tlv_list.append(new_tlv)
         else:
             print("wrong tlv order")
+            raise ImproperTLVOrderException(3, temp_ty)
         hex_bytes_in = new_hex
 
         while len(hex_bytes_in) > 0:
