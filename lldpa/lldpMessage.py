@@ -91,7 +91,7 @@ class LLDPMessage(object):
         dump = bytearray()
         for x in self.tlv_list:
             dump += x.dump()
-        return bytearray()  # TODO: Implement.
+        return dump  # TODO: Implement.
 
     def extract(self, data):
         tl_string = bin(int(data[0:4], 16))[2:].zfill(16)
