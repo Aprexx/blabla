@@ -88,6 +88,9 @@ class LLDPMessage(object):
 
     def dump(self):
         """Dumps all TLVs of the message"""
+        dump = bytearray()
+        for x in self.tlv_list:
+            dump += x.dump()
         return bytearray()  # TODO: Implement.
 
     def extract(self, data):
