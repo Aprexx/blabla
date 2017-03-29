@@ -1,4 +1,5 @@
 from lldpa.tlvs import base
+from lldpa.lldpExceptions import EoLLDPDUNotEmptyException
 import binascii
 
 
@@ -15,7 +16,7 @@ class TVLEoLLDPDU(base.LLDPTLV):
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
         if temp != '0000':
-            print("end not 0")
+            raise EoLLDPDUNotEmptyException("0x" + temp)
 
     def dump(self):
         return binascii.unhexlify('0000')
