@@ -60,7 +60,8 @@ class LLDPAgent:
         temp_type = str(binascii.hexlify(data[12:14]))
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-
+        print(self.src_mac)
+        print(src)
         if self.src_mac == src:
             print("")
             return
