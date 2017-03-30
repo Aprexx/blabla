@@ -23,10 +23,10 @@ class TLVTTL(base.LLDPTLV):
         if self.type == 3:
             if self.length == 2:
                 self.ttl2 = int(self.value, 16)
-            else:
-                print("ttl length != 2")
-        else:
-            print("ttl type != 3")
+            #else:
+                #print("ttl length != 2")
+        #else:
+            #print("ttl type != 3")
 
     def dump(self):
         result = bytearray()

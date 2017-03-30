@@ -32,10 +32,10 @@ class TLVPortId(base.LLDPTLV):
             elif int(self.value[0:2], 16) == 7:
                 self.sub_type2 = 7
                 self.port_id2 = self.value[2:].decode("hex")
-            else:
-                print("not part of project")
-        else:
-            print("port type != 2")
+            #else:
+                #print("not part of project")
+        #else:
+            #print("port type != 2")
 
     def dump(self):
         result = bytearray()

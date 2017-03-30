@@ -27,10 +27,10 @@ class TLVChassisId(base.LLDPTLV):
                 self.sub_type2 = 4
                 temp2 = self.value[2:]
                 self.chassis_id2 = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
-            else:
-                print("not part of project")
-        else:
-            print("chassis type != 1")
+            #else:
+                #print("not part of project")
+        #else:
+            #print("chassis type != 1")
 
     def dump(self):
         result = bytearray()
