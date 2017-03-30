@@ -60,10 +60,10 @@ class LLDPAgent:
         temp_type = str(binascii.hexlify(data[12:14]))
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-        print(self.src_mac)
-        print(src)
+        #print(self.src_mac)
+        #print(src)
         if self.src_mac == src:
-            print("")
+            print('Ignoring own message\n')
             return
         if dst == "0108c200000e" or dst == "0108c2000003" or dst == "0108c2000000":
             if temp_type == '88cc':
