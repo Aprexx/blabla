@@ -56,8 +56,6 @@ class LLDPAgent:
         temp_type = str(binascii.hexlify(data[12:14]))
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-        #print(binascii.hexlify(self.src_mac))
-        #print(src)
         if binascii.hexlify(self.src_mac) == src:
             print('Ignoring own message\n')
             return
@@ -70,6 +68,7 @@ class LLDPAgent:
         else:
             raise ImproperDestinationMACException(dst)
 
+        return bytearray()
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
