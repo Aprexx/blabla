@@ -68,7 +68,7 @@ class LLDPAgent:
         else:
             raise ImproperDestinationMACException(dst)
 
-        return bytearray()
+        return True
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
