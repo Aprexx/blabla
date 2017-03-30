@@ -65,7 +65,7 @@ class LLDPAgent:
         if self.src_mac == src:
             print("blabla")
             return
-        if dst == "01:08:c2:00:00:0e" or dst == "01:08:c2:00:00:03" or dst == "01:08:c2:00:00:00":
+        if dst == "0108c200000e" or dst == "0108c2000003" or dst == "0108c2000000":
             if type == '88cc':
                 lldpM = LLDPMessage()
                 lldpM.load(data[14:])
