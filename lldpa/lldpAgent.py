@@ -57,16 +57,15 @@ class LLDPAgent:
         """
         # TODO: destination mac has to be valid
 
-
-        type = str(binascii.hexlify(data[12:14]))
+        temp_type = str(binascii.hexlify(data[12:14]))
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
 
         if self.src_mac == src:
-            print("blabla")
+            print("")
             return
         if dst == "0108c200000e" or dst == "0108c2000003" or dst == "0108c2000000":
-            if type == '88cc':
+            if temp_type == '88cc':
                 lldpM = LLDPMessage()
                 lldpM.load(data[14:])
                 print(lldpM.__str__())
