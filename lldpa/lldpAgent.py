@@ -32,13 +32,10 @@ class LLDPAgent:
         :rtype: object
         """
 
-        pass  # TODO: Implement raw socket binding.
         self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
         self.recv_socket.bind((self.interface_name, self.port))
 
-
         while not self.terminate:
-            pass  # TODO: Implement reception. Use the parse_lldp_frame() function!
             packet = self.recv_socket.recv(65565)
             thread.start_new_thread(self.parse_lldp_frame, (packet,))
             break
@@ -55,13 +52,12 @@ class LLDPAgent:
         :param data: the data to parse
         :return:
         """
-        # TODO: destination mac has to be valid
 
         temp_type = str(binascii.hexlify(data[12:14]))
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-        print(self.src_mac)
-        print(src)
+        #print(self.src_mac)
+        #print(src)
         if self.src_mac == src:
             print('Ignoring own message\n')
             return
