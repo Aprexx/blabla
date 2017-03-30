@@ -65,10 +65,10 @@ class LLDPAgent:
                 lldpM = LLDPMessage()
                 lldpM.load(data[14:])
                 print(lldpM.__str__())
+                return lldpM
         else:
             raise ImproperDestinationMACException(dst)
 
-        return True
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
