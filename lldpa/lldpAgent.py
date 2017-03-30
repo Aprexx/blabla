@@ -61,6 +61,7 @@ class LLDPAgent:
         if self.src_mac == src:
             print('Ignoring own message\n')
             return
+        print(dst)
         if dst == "0108c200000e" or dst == "0108c2000003" or dst == "0108c2000000":
             if temp_type == '88cc':
                 lldpM = LLDPMessage()
