@@ -11,7 +11,7 @@ class TVLEoLLDPDU(base.LLDPTLV):
 
     def __str__(self):
         """Return a string representation of the TLV"""
-        return ""  # TODO: Implement.
+        return ""
 
     def load(self, bytes_in):
         temp = binascii.hexlify(bytes_in)
