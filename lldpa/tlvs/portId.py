@@ -26,9 +26,11 @@ class TLVPortId(base.LLDPTLV):
         self.value = temp[4:]
         if self.type == 2:
             if int(self.value[0:2], 16) == 3:
+                self.sub_type2 = 3
                 temp2 = self.value[2:]
                 self.port_id2 = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
             elif int(self.value[0:2], 16) == 7:
+                self.sub_type2 = 7
                 self.port_id2 = self.value[2:].decode("hex")
             else:
                 print("port subtype != 3 or 7")
