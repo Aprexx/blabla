@@ -62,9 +62,11 @@ class LLDPAgent:
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
 
-        if dst == src:
+        if self.src_mac == src:
+            print("blabla")
             return
-
+        if dst == "01:08:c2:00:00:0e" or dst == "01:08:c2:00:00:03" or dst == "01:08:c2:00:00:00":
+            raise ImproperDestinationMACException(dst)
         if type == '88cc':
             lldpM = LLDPMessage()
             lldpM.load(data[14:])
