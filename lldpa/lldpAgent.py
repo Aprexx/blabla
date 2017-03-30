@@ -71,7 +71,7 @@ class LLDPAgent:
                 lldpM.load(data[14:])
                 print(lldpM.__str__())
         else:
-            ImproperDestinationMACException(dst)
+            raise ImproperDestinationMACException(dst)
 
 
     def run_announce(self):
