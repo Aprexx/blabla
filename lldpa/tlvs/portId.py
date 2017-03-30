@@ -33,7 +33,7 @@ class TLVPortId(base.LLDPTLV):
                 self.sub_type2 = 7
                 self.port_id2 = self.value[2:].decode("hex")
             else:
-                print("port subtype != 3 or 7")
+                print("not part of project")
         else:
             print("port type != 2")
 

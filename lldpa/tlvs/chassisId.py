@@ -6,8 +6,6 @@ import struct
 class TLVChassisId(base.LLDPTLV):
     def __init__(self, sub_type=0, chassis_id=""):
         self.sub_type2 = sub_type
-        if (sub_type != 4):
-            print("chassis subtype != 4 cons")
         self.chassis_id2 = chassis_id
         self.tlv_type2 = 1
         self.length2 = 7
@@ -30,7 +28,7 @@ class TLVChassisId(base.LLDPTLV):
                 temp2 = self.value[2:]
                 self.chassis_id2 = ':'.join([temp2[i:i+2] for i in range(0, len(temp2), 2)]).upper()
             else:
-                print("chassis subtype != 4")
+                print("not part of project")
         else:
             print("chassis type != 1")
 
