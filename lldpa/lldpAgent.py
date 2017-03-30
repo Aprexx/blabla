@@ -59,7 +59,6 @@ class LLDPAgent:
         if binascii.hexlify(self.src_mac) == src:
             print('Ignoring own message\n')
             return
-        print(dst)
         if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
             if temp_type == '88cc':
                 lldpM = LLDPMessage()

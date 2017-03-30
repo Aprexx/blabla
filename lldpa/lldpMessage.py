@@ -41,7 +41,7 @@ class LLDPMessage(object):
         :return: None
         """
         hex_bytes_in = binascii.hexlify(bytes_in)
-        #print(hex_bytes_in)
+        print(hex_bytes_in)
         chassis_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 1:
             new_tlv = chassisId.TLVChassisId()
@@ -50,7 +50,7 @@ class LLDPMessage(object):
         else:
             raise ImproperTLVOrderException(1, temp_ty)
         hex_bytes_in = new_hex
-        #print(hex_bytes_in)
+        print(hex_bytes_in)
 
         port_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 2:
@@ -60,7 +60,7 @@ class LLDPMessage(object):
         else:
             raise ImproperTLVOrderException(2, temp_ty)
         hex_bytes_in = new_hex
-        #print(hex_bytes_in)
+        print(hex_bytes_in)
 
         ttl_payload, new_hex, temp_ty = self.extract(hex_bytes_in)
         if temp_ty == 3:
@@ -70,7 +70,7 @@ class LLDPMessage(object):
         else:
             raise ImproperTLVOrderException(3, temp_ty)
         hex_bytes_in = new_hex
-        #print(hex_bytes_in)
+        print(hex_bytes_in)
 
         while len(hex_bytes_in) > 0:
             #print(len(hex_bytes_in))
