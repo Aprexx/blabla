@@ -58,7 +58,7 @@ class LLDPAgent:
         src = binascii.hexlify((data[6:12]))
         #print(self.src_mac)
         #print(src)
-        if self.src_mac == src:
+        if binascii.unhexlify(self.src_mac) == src:
             print('Ignoring own message\n')
             return
         print(dst)
