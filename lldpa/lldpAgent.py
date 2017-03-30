@@ -66,11 +66,13 @@ class LLDPAgent:
             print("blabla")
             return
         if dst == "01:08:c2:00:00:0e" or dst == "01:08:c2:00:00:03" or dst == "01:08:c2:00:00:00":
-            raise ImproperDestinationMACException(dst)
-        if type == '88cc':
-            lldpM = LLDPMessage()
-            lldpM.load(data[14:])
-            print(lldpM.__str__())
+            if type == '88cc':
+                lldpM = LLDPMessage()
+                lldpM.load(data[14:])
+                print(lldpM.__str__())
+        else:
+            ImproperDestinationMACException(dst)
+
 
     def run_announce(self):
         """Sends LLDP packets every time interval.
