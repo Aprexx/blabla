@@ -41,7 +41,7 @@ class LLDPAgent:
             try:
                 packet = self.recv_socket.recv(4906)
                 if not packet:
-                    break:
+                    break
                 else:
                     print(self.parse_lldp_frame(packet).__str__())
             except socket.error as er:
@@ -49,7 +49,7 @@ class LLDPAgent:
                     continue
                 else:
                     break
-            except :
+            except:
                 break
         self.recv_socket.close()
 
