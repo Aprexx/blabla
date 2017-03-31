@@ -46,7 +46,7 @@ class LLDPAgent:
                 break
             if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
                 if temp_type == '88cc':
-                    self.parse_lldp_frame(packet)
+                    print(self.parse_lldp_frame(packet).__str__())
             else:
                 raise ImproperDestinationMACException(dst)
 
@@ -61,7 +61,7 @@ class LLDPAgent:
             #i = i+1
 
 
-        self.recv_socket.close()
+        self.stop()
 
     def parse_lldp_frame(self, data):
         """Parser of LLDP frames
@@ -79,7 +79,7 @@ class LLDPAgent:
         lldpM = LLDPMessage()
         lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
         lldpM.load(data[14:])
-        print(lldpM.__str__())
+        #print(lldpM.__str__())
         return lldpM
 
 
@@ -101,6 +101,7 @@ class LLDPAgent:
                 #print(output)
                 self.sending_socket.send(output+lldpdu)
             time.sleep(self.send_interval_sec)
+        self.stop()
 
     def generate_lldpdu(self):
         """ Compile an LLDP-DU (data unit) for transmission inside of an ethernet packet.
