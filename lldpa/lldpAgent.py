@@ -76,10 +76,13 @@ class LLDPAgent:
         :return:
         """
         pass  # TODO: Implement raw socket binding.
+        self.sending_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
+        self.sending_socket.bind((self.interface_name, self.port))
 
         while not self.terminate:
             lldpdu = self.generate_lldpdu()
             pass  # TODO: Implement sending. Use the generate_lldpdu() function!
+            self.sending_socket.send(lldpdu)
             time.sleep(self.send_interval_sec)
 
     def generate_lldpdu(self):
@@ -94,9 +97,6 @@ class LLDPAgent:
         msg.append(portId.TLVPortId(3, binascii.hexlify(self.src_mac)))
         msg.append(ttl.TLVTTL())
         msg.append(eolldpdu.TVLEoLLDPDU())
-
-        pass
-        # TODO: Implement.
         return str(msg.dump())
 
     def _get_interface_mac(self, interface_name):
