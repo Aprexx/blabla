@@ -94,7 +94,7 @@ class LLDPAgent:
         msg.append(portId.TLVPortId(3, binascii.hexlify(self.src_mac)))
         msg.append(ttl.TLVTTL())
         msg.append(eolldpdu.TVLEoLLDPDU())
-
+        print(binascii.unhexlify(msg.dump()))
         # TODO: Implement.
         return msg.dump()
 
