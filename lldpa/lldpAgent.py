@@ -38,13 +38,9 @@ class LLDPAgent:
         self.recv_socket.setblocking(0)
 
         while not self.terminate:
-            print('Ignoring own message\n')
             try:
                 packet = self.recv_socket.recv(4906)
-                if not packet:
-                    break
-                else:
-                    print(self.parse_lldp_frame(packet).__str__())
+                self.parse_lldp_frame(packet)
             except socket.error as er:
                 if er.errno == 11:
                     break
