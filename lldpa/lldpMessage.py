@@ -102,7 +102,7 @@ class LLDPMessage(object):
         dump = bytearray()
         for x in self.tlv_list:
             print(x)
-            dump.append(x.dump())
+            dump.extend(x.dump())
         return dump
 
     def extract(self, data):
