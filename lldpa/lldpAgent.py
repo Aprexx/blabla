@@ -42,8 +42,8 @@ class LLDPAgent:
             src = binascii.hexlify((packet[6:12]))
             if binascii.hexlify(self.src_mac) == src:
                 print('Ignoring own message\n')
-                continue
-                #break
+                #continue
+                break
             if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
                 if temp_type == '88cc':
                     self.parse_lldp_frame(packet)
