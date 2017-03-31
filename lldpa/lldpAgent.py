@@ -45,9 +45,7 @@ class LLDPAgent:
                 else:
                     print(self.parse_lldp_frame(packet).__str__())
             except socket.error as er:
-                if (er.errno == 11):
-                    pass
-                else:
+                if er.errno == 11:
                     break
             except:
                 break
