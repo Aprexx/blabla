@@ -43,9 +43,9 @@ class LLDPAgent:
                 self.parse_lldp_frame(packet)
             except socket.error as er:
                 if (er.errno == 11):
-                    break
+                    continue
             except:
-                continue
+                break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
