@@ -4,7 +4,7 @@ import struct
 import binascii
 
 class TLVTTL(base.LLDPTLV):
-    def __init__(self, ttl=100):
+    def __init__(self, ttl=120):
         self.ttl2 = ttl
         self.tlv_type2 = 3
         self.length2 = 2
