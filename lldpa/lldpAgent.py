@@ -70,7 +70,7 @@ class LLDPAgent:
                 lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
                 lldpM.load(data[14:])
                 print(lldpM.__str__())
-                return lldpM
+                #return lldpM
         else:
             raise ImproperDestinationMACException(dst)
 
