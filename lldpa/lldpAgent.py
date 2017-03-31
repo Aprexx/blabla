@@ -45,6 +45,7 @@ class LLDPAgent:
                 pass
             if packet is not None:
                 self.parse_lldp_frame(packet)
+            break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
