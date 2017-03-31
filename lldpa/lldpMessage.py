@@ -103,7 +103,7 @@ class LLDPMessage(object):
         for x in self.tlv_list:
             print(x)
             dump.extend(x.dump())
-        return dump
+        return binascii.hexlify(binascii.unhexlify(dump))
 
     def extract(self, data):
         tl_string = bin(int(data[0:4], 16))[2:].zfill(16)
