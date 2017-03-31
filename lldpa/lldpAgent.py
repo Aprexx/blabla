@@ -82,18 +82,17 @@ class LLDPAgent:
 
         :return:
         """
-        pass  # TODO: Implement raw socket binding.
         self.sending_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
         self.sending_socket.bind((self.interface_name, self.port))
         while not self.terminate:
             lldpdu = self.generate_lldpdu()
             for x in ["0180c200000e", "0180c2000003", "0180c2000000"]:
-                output = x
+                output = binascii.unhexlify(x)
                 output += self.src_mac
-                output += "88cc"
+                output += binascii.unhexlify("88cc")
                 #output += binascii.unhexlify(lldpdu)
-                print(output)
-                self.sending_socket.send(binascii.hexlify(output)+lldpdu)
+                #print(output)
+                self.sending_socket.send(binascii.hexlify(output))
             time.sleep(self.send_interval_sec)
 
     def generate_lldpdu(self):
