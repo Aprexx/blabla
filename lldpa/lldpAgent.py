@@ -44,18 +44,21 @@ class LLDPAgent:
                 print('Ignoring own message\n')
                 #continue
                 break
+            if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
+                if temp_type == '88cc':
+                    self.parse_lldp_frame(data)
+            else:
+                raise ImproperDestinationMACException(dst)
 
 
 
 
 
+            #self.parse_lldp_frame(packet)
 
-
-            self.parse_lldp_frame(packet)
-
-            if i == 1:
-                break
-            i = i+1
+            #if i == 1:
+            #    break
+            #i = i+1
 
 
         self.recv_socket.close()
@@ -72,21 +75,13 @@ class LLDPAgent:
         :return:
         """
 
-        temp_type = str(binascii.hexlify(data[12:14]))
-        dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-        if binascii.hexlify(self.src_mac) == src:
-            #print('Ignoring own message\n')
-            return
-        if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
-            if temp_type == '88cc':
-                lldpM = LLDPMessage()
-                lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
-                lldpM.load(data[14:])
-                print(lldpM.__str__())
-                return lldpM
-        else:
-            raise ImproperDestinationMACException(dst)
+        lldpM = LLDPMessage()
+        lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
+        lldpM.load(data[14:])
+        print(lldpM.__str__())
+        return lldpM
+
 
 
     def run_announce(self):
