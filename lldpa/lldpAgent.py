@@ -94,10 +94,10 @@ class LLDPAgent:
         msg.append(portId.TLVPortId(3, binascii.hexlify(self.src_mac)))
         msg.append(ttl.TLVTTL())
         msg.append(eolldpdu.TVLEoLLDPDU())
-        print(binascii.unhexlify(msg.dump()))
+
         pass
         # TODO: Implement.
-        return msg.dump()
+        return str(msg.dump())
 
     def _get_interface_mac(self, interface_name):
         """Return the MAC address of the given interface.
