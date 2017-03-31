@@ -36,7 +36,7 @@ class LLDPAgent:
         self.recv_socket.bind((self.interface_name, self.port))
 
         while not self.terminate:
-            packet = self.recv_socket.recv(65536)
+            packet = self.recv_socket.recv(4096)
             self.parse_lldp_frame(packet)
             #break
         self.recv_socket.close()
