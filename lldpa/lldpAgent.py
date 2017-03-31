@@ -92,7 +92,7 @@ class LLDPAgent:
                 output += binascii.unhexlify("88cc")
                 #output += binascii.unhexlify(lldpdu)
                 #print(output)
-                self.sending_socket.send(output)
+                self.sending_socket.send(output+lldpdu)
             time.sleep(self.send_interval_sec)
 
     def generate_lldpdu(self):
