@@ -101,6 +101,7 @@ class LLDPMessage(object):
         """Dumps all TLVs of the message"""
         dump = bytearray()
         for x in self.tlv_list:
+            print(x)
             dump.extend(x.dump())
         return dump
 
