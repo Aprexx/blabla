@@ -69,6 +69,7 @@ class LLDPAgent:
         if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
             if temp_type == '88cc':
                 lldpM = LLDPMessage()
+                lldpM.mac = src
                 lldpM.load(data[14:])
                 print(lldpM.__str__())
                 return lldpM
