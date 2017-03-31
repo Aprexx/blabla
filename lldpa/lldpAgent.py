@@ -92,7 +92,7 @@ class LLDPAgent:
                 output.extend(binascii.hexlify(x))
                 #print(self.src_mac)
                 output.extend(binascii.hexlify(self.src_mac))
-                output.extend("88cc".decode("hex"))
+                output.extend(binascii.hexlify("88cc"))
                 output.extend(lldpdu)
                 self.sending_socket.send(lldpdu)
             pass  # TODO: Implement sending. Use the generate_lldpdu() function!
