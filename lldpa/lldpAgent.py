@@ -95,6 +95,7 @@ class LLDPAgent:
         msg.append(ttl.TLVTTL())
         msg.append(eolldpdu.TVLEoLLDPDU())
         print(binascii.unhexlify(msg.dump()))
+        pass
         # TODO: Implement.
         return msg.dump()
 
