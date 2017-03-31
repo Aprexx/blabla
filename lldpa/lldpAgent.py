@@ -88,7 +88,7 @@ class LLDPAgent:
             for x in ["0180c200000e", "0180c2000003", "0180c2000000"]:
                 output = bytearray()
                 output.extend(binascii.hexlify(x))
-                print(self.src_mac)
+                #print(self.src_mac)
                 output.extend(binascii.hexlify(self.src_mac))
                 output.extend("88cc".decode("hex"))
                 output.extend(lldpdu)
