@@ -39,7 +39,6 @@ class LLDPAgent:
         while not self.terminate:
             packet = self.recv_socket.recv(65565)
             thread.start_new_thread(self.parse_lldp_frame, (packet,))
-            break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
@@ -128,3 +127,5 @@ class LLDPAgent:
         self.terminate = 1
         if self.recv_socket is not None:
             self.recv_socket.close()
+        if self.sending_socket is not None:
+            self.sending_socket.close()
