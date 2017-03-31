@@ -91,9 +91,9 @@ class LLDPAgent:
                 output = x
                 output += self.src_mac
                 output += "88cc"
-                output += binascii.unhexlify(lldpdu)
+                #output += binascii.unhexlify(lldpdu)
                 print(output)
-                self.sending_socket.send(binascii.hexlify(output))
+                self.sending_socket.send(binascii.hexlify(output)+lldpdu)
             time.sleep(self.send_interval_sec)
 
     def generate_lldpdu(self):
