@@ -4,6 +4,7 @@ import binascii
 import platform
 import time
 import socket
+import thread
 from lldpa.lldpMessage import LLDPMessage
 from lldpa.lldpExceptions import ImproperDestinationMACException
 from lldpa.tlvs import *
@@ -34,34 +35,18 @@ class LLDPAgent:
 
         self.recv_socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
         self.recv_socket.bind((self.interface_name, self.port))
-        i = 0
+        #self.recv_socket.setblocking(False)
+
         while not self.terminate:
-            packet = self.recv_socket.recv(4096)
-            temp_type = str(binascii.hexlify(packet[12:14]))
-            dst = binascii.hexlify((packet[0:6]))
-            src = binascii.hexlify((packet[6:12]))
-            if binascii.hexlify(self.src_mac) == src:
-                print('Ignoring own message\n')
-                #continue
-                break
-            if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
-                if temp_type == '88cc':
-                    print(self.parse_lldp_frame(packet).__str__())
-            else:
-                raise ImproperDestinationMACException(dst)
-
-
-
-
-
-            #self.parse_lldp_frame(packet)
-
-            #if i == 1:
-            #    break
-            #i = i+1
-
-
-        self.stop()
+            packet = None
+            try:
+                packet = self.recv_socket.recv(65536)
+            except socket.error:
+                pass
+            if packet is not None:
+                self.parse_lldp_frame(packet)
+            break
+        self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
         """Parser of LLDP frames
@@ -75,13 +60,21 @@ class LLDPAgent:
         :return:
         """
 
+        temp_type = str(binascii.hexlify(data[12:14]))
+        dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
-        lldpM = LLDPMessage()
-        lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
-        lldpM.load(data[14:])
-        #print(lldpM.__str__())
-        return lldpM
-
+        if binascii.hexlify(self.src_mac) == src:
+            print('Ignoring own message\n')
+            return
+        if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
+            if temp_type == '88cc':
+                lldpM = LLDPMessage()
+                lldpM.mac = ':'.join([src[i:i + 2] for i in range(0, len(src), 2)]).upper()
+                lldpM.load(data[14:])
+                print(lldpM.__str__())
+                return lldpM
+        else:
+            raise ImproperDestinationMACException(dst)
 
 
     def run_announce(self):
@@ -93,12 +86,14 @@ class LLDPAgent:
         self.sending_socket.bind((self.interface_name, self.port))
         while not self.terminate:
             lldpdu = self.generate_lldpdu()
-            output = binascii.unhexlify('0180c200000e')
-            output += self.src_mac
-            output += binascii.unhexlify("88cc")
-            self.sending_socket.send(output+lldpdu)
+            for x in ["0180c200000e", "0180c2000003", "0180c2000000"]:
+                output = binascii.unhexlify(x)
+                output += self.src_mac
+                output += binascii.unhexlify("88cc")
+                #output += binascii.unhexlify(lldpdu)
+                #print(output)
+                self.sending_socket.send(output+lldpdu)
             time.sleep(self.send_interval_sec)
-        self.stop()
 
     def generate_lldpdu(self):
         """ Compile an LLDP-DU (data unit) for transmission inside of an ethernet packet.
