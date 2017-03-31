@@ -40,10 +40,7 @@ class LLDPAgent:
         while not self.terminate:
             try:
                 packet = self.recv_socket.recv(4906)
-            except socket.error as er:
-                if (er.errno == 11):
-                    break
-            except:
+            except :
                 break
             else:
                 print(self.parse_lldp_frame(packet).__str__())
