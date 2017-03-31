@@ -88,13 +88,12 @@ class LLDPAgent:
         while not self.terminate:
             lldpdu = self.generate_lldpdu()
             for x in ["0180c200000e", "0180c2000003", "0180c2000000"]:
-                output = bytearray()
-                output.extend(binascii.hexlify(x))
-                output.extend(binascii.hexlify(self.src_mac))
-                output.extend(binascii.hexlify("88cc"))
-                output.extend(lldpdu)
-                print(binascii.unhexlify(output))
-                self.sending_socket.send(output)
+                output = x
+                output += self.src_mac
+                output += "88cc"
+                output += binascii.unhexlify(lldpdu)
+                print(output)
+                self.sending_socket.send(binascii.hexlify(output))
             time.sleep(self.send_interval_sec)
 
     def generate_lldpdu(self):
