@@ -53,7 +53,7 @@ class LLDPMessageTests(unittest.TestCase):
         self.assertEqual(chassis_id_tlv.type, 1)
         self.assertEqual(chassis_id_tlv.length, 7)
         self.assertEqual(chassis_id_tlv.sub_type(), 4)
-        self.assertEqual(chassis_id_tlv.chassis_id(), '80:C1:6E:B1:08:C0')
+        self.assertEqual(chassis_id_tlv.chassis_id().upper(), '80:C1:6E:B1:08:C0')
 
         port_id_tlv = msg[1]
         self.assertEqual(port_id_tlv.type, 2)

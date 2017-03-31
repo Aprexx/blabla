@@ -78,8 +78,8 @@ class LLDPAgentTests(unittest.TestCase):
             sys.stdout.write(next_line)
             sys.stdout.flush()
 
-        self.assertEqual(printed_message,
-                             "LLDPMessage(src_mac=01:23:45:67:89:AD,chassis_id=01:23:45:67:89:AB,port_id=01:23:45:67:89:AB,ttl=120)\n")
+        self.assertEqual(printed_message, "LLDPMessage(src_mac=01:23:45:67:89:AD,chassis_id=01:23:45:67:89:AB,"
+                                          "port_id=01:23:45:67:89:AB,ttl=120)\n")
 
     def test_ignore_own_messages(self):
         sending_socket = None

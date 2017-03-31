@@ -52,7 +52,7 @@ class TLVPortIdTests(unittest.TestCase):
         tlv = portId.TLVPortId(sub_type=subtype, port_id=mac)
         self.assertEqual(tlv.type, 2)
         self.assertEqual(tlv.sub_type(), subtype)
-        self.assertEqual(tlv.port_id(), mac)
+        self.assertEqual(tlv.port_id().upper(), mac)
 
     def test_type(self):
         tlv = portId.TLVPortId()
@@ -80,11 +80,12 @@ class TLVPortIdTests(unittest.TestCase):
         self.assertEqual(tlv.dump(), result)
 
     def test_load(self):
+        mac = "F4:24:00:C8:07:11"
         port_id_tlv_bytes = '\x04\x07\x03\xF4\x24\x00\xc8\x07\x11'
-        port_id_tlv = portId.TLVPortId(sub_type=3, port_id="F4:24:00:C8:07:11")
+        port_id_tlv = portId.TLVPortId(sub_type=3, port_id=mac)
         port_id_tlv.load(port_id_tlv_bytes)
         self.assertEqual(port_id_tlv.sub_type(), 3)
-        self.assertEqual(port_id_tlv.port_id(), "F4:24:00:C8:07:11")
+        self.assertEqual(port_id_tlv.port_id().upper(), mac)
 
 
 class TLVChassisIdTests(unittest.TestCase):
@@ -97,7 +98,7 @@ class TLVChassisIdTests(unittest.TestCase):
         tlv = chassisId.TLVChassisId(sub_type=subtype, chassis_id=mac)
         self.assertEqual(tlv.type, 1)
         self.assertEqual(tlv.sub_type(), subtype)
-        self.assertEqual(tlv.chassis_id(), mac)
+        self.assertEqual(tlv.chassis_id().upper(), mac)
 
     def test_create_if_alias(self):
         subtype = 2
@@ -132,11 +133,12 @@ class TLVChassisIdTests(unittest.TestCase):
         self.assertEqual(tlv.dump(), result)
 
     def test_load(self):
+        mac = "F4:24:00:C8:07:11"
         chassis_id_tlv_bytes = '\x02\x07\x04\xF4\x24\x00\xc8\x07\x11'
-        chassis_id_tlv = chassisId.TLVChassisId(sub_type=4, chassis_id="F4:24:00:C8:07:11")
+        chassis_id_tlv = chassisId.TLVChassisId(sub_type=4, chassis_id=mac)
         chassis_id_tlv.load(chassis_id_tlv_bytes)
         self.assertEqual(chassis_id_tlv.sub_type(), 4)
-        self.assertEqual(chassis_id_tlv.chassis_id(), "F4:24:00:C8:07:11")
+        self.assertEqual(chassis_id_tlv.chassis_id().upper(), mac)
 
 
 class TLVEOLLDPDUTests(unittest.TestCase):
