@@ -37,10 +37,9 @@ class LLDPAgent:
         i = 0
         while not self.terminate:
             packet = self.recv_socket.recv(4096)
-            if packet[12:14] == '\x88\xcc':
-                self.parse_lldp_frame(packet)
-            #if i == 1:
-            #    break
+            self.parse_lldp_frame(packet)
+            if i == 1:
+                break
             i = i+1
 
         self.recv_socket.close()
