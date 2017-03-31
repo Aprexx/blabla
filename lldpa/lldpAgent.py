@@ -44,7 +44,7 @@ class LLDPAgent:
             except socket.error as er:
                 if er.errno == 11:
                     pass
-                else
+                else:
                     break
             except:
                 print('Ignoring own message\n')
