@@ -4,7 +4,6 @@ import binascii
 import platform
 import time
 import socket
-import thread
 from lldpa.lldpMessage import LLDPMessage
 from lldpa.lldpExceptions import ImproperDestinationMACException
 from lldpa.tlvs import *
@@ -45,7 +44,7 @@ class LLDPAgent:
                 pass
             if packet is not None:
                 self.parse_lldp_frame(packet)
-            break
+            #break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):

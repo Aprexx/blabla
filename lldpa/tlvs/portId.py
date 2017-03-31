@@ -10,9 +10,11 @@ class TLVPortId(base.LLDPTLV):
         if self.sub_type2 == 3:
             self.length2 = 7
             self.value = '03' + port_id.replace(":", "")
-        if self.sub_type2 == 7:
+        elif self.sub_type2 == 7:
             self.length2 = 1 + len(self.port_id2)
             self.value = '07' + port_id.encode("hex")
+        #else:
+        #    print("not part of project")
 
     def __str__(self):
         """Return a string representation of the TLV"""
