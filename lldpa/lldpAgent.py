@@ -41,8 +41,11 @@ class LLDPAgent:
             try:
                 packet = self.recv_socket.recv(4906)
                 self.parse_lldp_frame(packet)
-            #except socket.error:
-            #    break
+            except socket.error as er:
+                if (er.errno == 11):
+                    break
+                else:
+                    pass
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
