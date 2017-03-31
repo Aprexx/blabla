@@ -38,12 +38,11 @@ class LLDPAgent:
         self.recv_socket.setblocking(0)
 
         while not self.terminate:
-            packet = None
             try:
                 packet = self.recv_socket.recv(4906)
-            except socket:
-                break
-            self.parse_lldp_frame(packet)
+                self.parse_lldp_frame(packet)
+            #except socket.error:
+            #    break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
