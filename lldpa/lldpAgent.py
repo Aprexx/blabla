@@ -41,6 +41,7 @@ class LLDPAgent:
             if i == 1:
                 break
             i = i+1
+            break
 
         self.recv_socket.close()
 
