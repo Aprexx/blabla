@@ -38,10 +38,11 @@ class LLDPAgent:
         while not self.terminate:
             packet = self.recv_socket.recv(4096)
             self.parse_lldp_frame(packet)
+            i = i+1
             if i == 1:
                 break
             i = i+1
-            break
+
 
         self.recv_socket.close()
 
