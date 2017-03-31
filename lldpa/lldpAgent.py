@@ -38,7 +38,9 @@ class LLDPAgent:
         self.recv_socket.setblocking(False)
 
         while not self.terminate:
-            packet = self.recv_socket.recv(65536)
+            try:
+                packet = self.recv_socket.recv(65536)
+            except socket.error:
             if binascii.unhexlify(packet[12:14]) == '88cc':
                 self.parse_lldp_frame(packet)
         self.recv_socket.close()
