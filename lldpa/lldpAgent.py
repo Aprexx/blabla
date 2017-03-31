@@ -38,14 +38,8 @@ class LLDPAgent:
         #self.recv_socket.setblocking(False)
 
         while not self.terminate:
-            pass
-            packet = None
-            try:
-                packet = self.recv_socket.recv(65536)
-            except socket.error:
-                pass
-            if packet is not None:
-                self.parse_lldp_frame(packet)
+            packet = self.recv_socket.recv(4906)
+            self.parse_lldp_frame(packet)
             break
         self.recv_socket.close()
 
