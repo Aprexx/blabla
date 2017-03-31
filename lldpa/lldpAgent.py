@@ -42,7 +42,7 @@ class LLDPAgent:
                 packet = self.recv_socket.recv(4906)
             except socket.error as er:
                 if (er.errno == 11):
-                    continue
+                    break
             except:
                 break
             else:
