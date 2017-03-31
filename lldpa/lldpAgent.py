@@ -41,8 +41,8 @@ class LLDPAgent:
             try:
                 packet = self.recv_socket.recv(65536)
             except socket.error:
-            if binascii.unhexlify(packet[12:14]) == '88cc':
-                self.parse_lldp_frame(packet)
+                pass
+            self.parse_lldp_frame(packet)
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
