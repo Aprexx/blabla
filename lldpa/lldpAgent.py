@@ -91,7 +91,7 @@ class LLDPAgent:
         """
         msg = LLDPMessage(binascii.hexlify(self.src_mac))
         msg.append(chassisId.TLVChassisId(4, binascii.hexlify(self.src_mac)))
-        msg.append(portId.TLVPortId(7, binascii.hexlify(self.src_mac)))
+        msg.append(portId.TLVPortId(3, binascii.hexlify(self.src_mac)))
         msg.append(ttl.TLVTTL())
 
         # TODO: Implement.
