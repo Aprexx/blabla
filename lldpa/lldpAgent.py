@@ -42,7 +42,8 @@ class LLDPAgent:
             src = binascii.hexlify((packet[6:12]))
             if binascii.hexlify(self.src_mac) == src:
                 print('Ignoring own message\n')
-                continue
+                #continue
+                break
 
 
 
@@ -75,7 +76,7 @@ class LLDPAgent:
         dst = binascii.hexlify((data[0:6]))
         src = binascii.hexlify((data[6:12]))
         if binascii.hexlify(self.src_mac) == src:
-            print('Ignoring own message\n')
+            #print('Ignoring own message\n')
             return
         if dst == "0180c200000e" or dst == "0180c2000003" or dst == "0180c2000000":
             if temp_type == '88cc':
