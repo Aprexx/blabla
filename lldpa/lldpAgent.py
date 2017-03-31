@@ -7,6 +7,7 @@ import socket
 import thread
 from lldpa.lldpMessage import LLDPMessage
 from lldpa.lldpExceptions import ImproperDestinationMACException
+from lldpa.tlvs import *
 
 
 class LLDPAgent:
@@ -88,9 +89,13 @@ class LLDPAgent:
             - Port ID TLV
             - Time to Live TLV
         """
+        msg = LLDPMessage(binascii.hexlify(self.src_mac))
+        msg.append(chassisId.TLVChassisId(4, binascii.hexlify(self.src_mac)))
+        msg.append(portId.TLVPortId(7, binascii.hexlify(self.src_mac)))
+        msg.append(ttl.TLVTTL())
 
         # TODO: Implement.
-        return bytearray()
+        return msg.dump()
 
     def _get_interface_mac(self, interface_name):
         """Return the MAC address of the given interface.
