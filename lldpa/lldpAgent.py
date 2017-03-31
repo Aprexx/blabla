@@ -38,6 +38,7 @@ class LLDPAgent:
         #self.recv_socket.setblocking(False)
 
         while not self.terminate:
+            pass
             packet = None
             try:
                 packet = self.recv_socket.recv(65536)
