@@ -37,9 +37,21 @@ class LLDPAgent:
         i = 0
         while not self.terminate:
             packet = self.recv_socket.recv(4096)
-            msg = self.parse_lldp_frame(packet)
-            print(msg.__str__())
-            #i = i+1
+            temp_type = str(binascii.hexlify(packet[12:14]))
+            dst = binascii.hexlify((packet[0:6]))
+            src = binascii.hexlify((packet[6:12]))
+            if binascii.hexlify(self.src_mac) == src:
+                print('Ignoring own message\n')
+                continue
+
+
+
+
+
+
+
+            self.parse_lldp_frame(packet)
+
             if i == 1:
                 break
             i = i+1
