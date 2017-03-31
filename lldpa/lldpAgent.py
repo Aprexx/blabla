@@ -40,7 +40,6 @@ class LLDPAgent:
         while not self.terminate:
             packet = self.recv_socket.recv(4906)
             self.parse_lldp_frame(packet)
-            break
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
