@@ -38,6 +38,7 @@ class LLDPAgent:
         self.recv_socket.setblocking(0)
 
         while not self.terminate:
+            print('Ignoring own message\n')
             try:
                 packet = self.recv_socket.recv(4906)
                 if not packet:
