@@ -46,7 +46,7 @@ class LLDPAgent:
             except:
                 break
             else:
-                self.parse_lldp_frame(packet)
+                print(self.parse_lldp_frame(packet).__str__())
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
