@@ -43,8 +43,6 @@ class LLDPAgent:
                 self.parse_lldp_frame(packet)
             except socket.error as er:
                 if (er.errno == 11):
-                    pass
-                else:
                     break
             except:
                 continue
