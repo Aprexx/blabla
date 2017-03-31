@@ -42,7 +42,8 @@ class LLDPAgent:
                 packet = self.recv_socket.recv(65536)
             except socket.error:
                 pass
-            self.parse_lldp_frame(packet)
+            if packet is not None:
+                self.parse_lldp_frame(packet)
         self.recv_socket.close()
 
     def parse_lldp_frame(self, data):
